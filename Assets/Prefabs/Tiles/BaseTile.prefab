@@ -92,10 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5992832708823336437}
   - component: {fileID: 8960911329526489592}
-  - component: {fileID: 1901589079914813430}
   - component: {fileID: 8797797439527435770}
   m_Layer: 0
-  m_Name: Tile
+  m_Name: BaseTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,22 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1901589079914813430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892923298072077104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44068067cb8c21b4088a6aba67d44a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
-  offsetColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
-  render: {fileID: 8960911329526489592}
-  highlight: {fileID: 6356191660402712755}
 --- !u!61 &8797797439527435770
 BoxCollider2D:
   m_ObjectHideFlags: 0
