@@ -31,6 +31,18 @@ PrefabInstance:
       propertyPath: offsetColor.r
       value: 0.6226415
       objectReference: {fileID: 0}
+    - target: {fileID: 1019364217143836310, guid: fe9dbd09064b6154f8fd427d2e5c8622, type: 3}
+      propertyPath: m_Color.b
+      value: 0.20714669
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019364217143836310, guid: fe9dbd09064b6154f8fd427d2e5c8622, type: 3}
+      propertyPath: m_Color.g
+      value: 0.32397616
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019364217143836310, guid: fe9dbd09064b6154f8fd427d2e5c8622, type: 3}
+      propertyPath: m_Color.r
+      value: 0.46226418
+      objectReference: {fileID: 0}
     - target: {fileID: 2401789291755264667, guid: fe9dbd09064b6154f8fd427d2e5c8622, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -109,5 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe64500baa26f149a833959aba9e928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileName: Mountain
   render: {fileID: 7546922211831271744}
   highlight: {fileID: 5535550696970833931}
+  isWalkable: 0
+  OccupiedUnit: {fileID: 0}
