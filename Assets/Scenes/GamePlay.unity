@@ -387,8 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c1a5e6b9e88434b889314adb08f485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 9
   grassTile: {fileID: -8447856390119742342, guid: fe9dbd09064b6154f8fd427d2e5c8622, type: 3}
   mountainTile: {fileID: 7570700146280213961, guid: e469acaf626f51243894e246097673a7, type: 3}
   camera: {fileID: 519420032}

@@ -6,8 +6,8 @@ public class GridManager : MonoBehaviour
 {
     public static GridManager Instance;
 
-    [SerializeField] private Tile grassTile, mountainTile;
-    [SerializeField] private Transform camera;
+    [SerializeField] Tile grassTile, mountainTile;
+    [SerializeField] Transform camera;
 
     int width = 10, height = 8;
     Dictionary<Vector2, Tile> tiles;
