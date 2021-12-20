@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
@@ -37,7 +35,6 @@ public abstract class Tile : MonoBehaviour
             return;
         }
 
-        Debug.Log("DOWNNNNN");
         if (OccupiedUnit != null)
         {
             if (OccupiedUnit.Faction == Faction.Hero)

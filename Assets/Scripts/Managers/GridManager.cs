@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,29 +5,37 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public static GridManager Instance;
-    [SerializeField] private int width, height;
-    [SerializeField] private Tile grassTile, mountainTile;
 
+    [SerializeField] private Tile grassTile, mountainTile;
     [SerializeField] private Transform camera;
 
-    private Dictionary<Vector2, Tile> tiles;
+    int width = 10, height = 8;
+    Dictionary<Vector2, Tile> tiles;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
 
     public void GenerateGrid()
     {
+        // ²£¦a¹Ï
         tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                var randomTile = Random.Range(0, 6) == 3 ? mountainTile : grassTile;
-                var spawnedTile = Instantiate(randomTile, new Vector3(x, y), Quaternion.identity);
-                spawnedTile.name = $"Tile {x} {y}";
+                Tile spawnedTile;
+                if (x == 0 || x == 9 || y == 0 || y == 7)
+                {
+                    spawnedTile = Instantiate(grassTile, new Vector3(x, y), Quaternion.identity);
+                }
+                else
+                {
+                    spawnedTile = Instantiate(mountainTile, new Vector3(x, y), Quaternion.identity);
+                }
 
+                spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.Init(x, y);
 
                 tiles[new Vector2(x, y)] = spawnedTile;
