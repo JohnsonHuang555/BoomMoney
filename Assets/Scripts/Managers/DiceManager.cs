@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
-    public static DiceManager instance;
+    public static DiceManager Instance;
     public int dicePoint = 0;
+    [SerializeField] GameObject diceButton;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
+    }
+
+    public void ShowDiceButton()
+    {
+        diceButton.SetActive(true);
     }
 
     public void RollDice()

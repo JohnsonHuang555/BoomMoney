@@ -28,9 +28,11 @@ public class UnitManager : MonoBehaviour
             randomSpawnTile.SetUnit(spawnedHero);
         }
 
-        GameManager.Instance.ChangeState(GameState.SpawnEnemies);
+        DiceManager.Instance.ShowDiceButton();
+        GameManager.Instance.ChangeState(GameState.HerosTurn);
     }
 
+    /*
     public void SpawnEnemy()
     {
         // TODO;
@@ -47,6 +49,7 @@ public class UnitManager : MonoBehaviour
 
         GameManager.Instance.ChangeState(GameState.HerosTurn);
     }
+    */
 
     private T GetUnitByName<T>(Faction faction, string name) where T : BaseUnit
     {

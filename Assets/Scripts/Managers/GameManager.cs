@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
                 UnitManager.Instance.SpawnHeros();
                 break;
             case GameState.SpawnEnemies:
-                UnitManager.Instance.SpawnEnemy();
+                // TODO: ¹D¨ã±¼¸¨
+                //UnitManager.Instance.SpawnEnemy();
                 break;
             case GameState.HerosTurn:
                 break;
