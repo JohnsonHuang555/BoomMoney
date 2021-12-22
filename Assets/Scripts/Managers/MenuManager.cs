@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
     [SerializeField] private GameObject selectedHeroObject, tileObject, tileUnitObject;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
