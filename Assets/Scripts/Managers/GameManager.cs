@@ -28,13 +28,14 @@ public class GameManager : MonoBehaviour
             case GameState.SpawnHeros:
                 UnitManager.Instance.SpawnHeros();
                 break;
-            case GameState.SpawnEnemies:
+            case GameState.SpawnItems:
                 // TODO: ¹D¨ã±¼¸¨
-                //UnitManager.Instance.SpawnEnemy();
                 break;
             case GameState.HerosTurn:
                 break;
-            case GameState.EnimesTurn:
+            case GameState.MovePlayer:
+                Debug.Log("MOVE");
+                UnitManager.Instance.MovePlayer();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -46,7 +47,7 @@ public enum GameState
 {
     GenerateGrid = 0,
     SpawnHeros = 1,
-    SpawnEnemies = 2,
+    SpawnItems = 2,
     HerosTurn = 3,
-    EnimesTurn = 4,
+    MovePlayer = 4,
 }

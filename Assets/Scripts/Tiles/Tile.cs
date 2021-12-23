@@ -29,7 +29,6 @@ public abstract class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log(GameManager.Instance.GameState);
         if (GameManager.Instance.GameState != GameState.HerosTurn)
         {
             return;
@@ -37,6 +36,7 @@ public abstract class Tile : MonoBehaviour
 
         if (OccupiedUnit != null)
         {
+            // 選的是英雄就要寫進 SelectedHero
             if (OccupiedUnit.Faction == Faction.Hero)
             {
                 UnitManager.Instance.SetSelectedHero((BaseHero)OccupiedUnit);
@@ -67,6 +67,7 @@ public abstract class Tile : MonoBehaviour
         {
             unit.OccupedTile.OccupiedUnit = null;
         }
+
         unit.transform.position = transform.position;
         OccupiedUnit = unit;
         unit.OccupedTile = this;

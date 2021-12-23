@@ -8,7 +8,7 @@ public class UnitManager : MonoBehaviour
     public BaseHero SelectedHero;
     List<ScriptableUnit> units;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
 
@@ -65,5 +65,11 @@ public class UnitManager : MonoBehaviour
     {
         SelectedHero = hero;
         MenuManager.Instance.ShowSelectedHero(hero);
+    }
+
+    public void MovePlayer()
+    {
+        var fireTile = GridManager.Instance.GetTileByName("Fire");
+        Debug.Log(fireTile);
     }
 }
