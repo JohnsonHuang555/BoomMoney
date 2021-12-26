@@ -17,7 +17,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnHeros()
     {
-        var heros = new string[] {"Fire", "Grass"};
+        var heros = new string[] {"Fire"};
 
         foreach (var hero in heros)
         {
@@ -69,7 +69,39 @@ public class UnitManager : MonoBehaviour
 
     public void MovePlayer()
     {
+        // FIXME: Fire 改為當前玩家角色名稱
         var fireTile = GridManager.Instance.GetTileByName("Fire");
-        Debug.Log(fireTile);
+        var dicePoint = DiceManager.Instance.dicePoint;
+        var position = GetMovePosition(fireTile, dicePoint);
+        var hero = (BaseHero)fireTile.OccupiedUnit;
+
+        var movedTile = GridManager.Instance.GetTileAtPosition(position);
+        movedTile.SetUnit(hero);
     }
+
+    // 移動邏輯
+    private Vector2 GetMovePosition(Tile tile, int dicePoint)
+    {
+        // 當前位置
+        var currentPositionX = tile.transform.position.x;
+        var currentPositionY = tile.transform.position.y;
+
+        // 要移動的位置
+        var movePositionX = currentPositionX;
+        var movePositionY = currentPositionY;
+
+        if (currentPositionX == 0)
+        {
+            movePositionY = currentPositionY + dicePoint;
+            // 該轉彎了
+            if (movePositionY > 7)
+            {
+                var remainPoint = 7 - currentPositionY;
+                movePositionY = 7;
+                movePositionX = remainPoint;
+            }
+        }
+
+        return new Vector2(movePositionX, movePositionY);
+    } 
 }

@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
             case GameState.HerosTurn:
                 break;
             case GameState.MovePlayer:
-                Debug.Log("MOVE");
                 UnitManager.Instance.MovePlayer();
                 break;
             default:

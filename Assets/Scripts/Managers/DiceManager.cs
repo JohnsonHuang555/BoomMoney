@@ -18,7 +18,6 @@ public class DiceManager : MonoBehaviour
 
     public void RollDice()
     {
-        Debug.Log(GameManager.Instance.GameState);
         if (GameManager.Instance.GameState != GameState.HerosTurn)
         {
             return;

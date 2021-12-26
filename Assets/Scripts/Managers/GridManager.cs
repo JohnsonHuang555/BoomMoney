@@ -65,6 +65,6 @@ public class GridManager : MonoBehaviour
 
     public Tile GetTileByName(string name)
     {
-        return tiles.Where(t => t.Value.OccupiedUnit.UnitName == name).First().Value;
+        return tiles.Where(t => t.Value.OccupiedUnit && t.Value.OccupiedUnit.UnitName == name).First().Value;
     }
 }
