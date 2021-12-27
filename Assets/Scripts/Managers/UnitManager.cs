@@ -73,70 +73,120 @@ public class UnitManager : MonoBehaviour
         // FIXME: Fire 改為當前玩家角色名稱
         var fireTile = GridManager.Instance.GetTileByName("Fire");
         var dicePoint = DiceManager.Instance.dicePoint;
-        var position = GetMovePosition(fireTile, dicePoint);
+        var positions = GetMovePosition(fireTile, dicePoint);
         var hero = (BaseHero)fireTile.OccupiedUnit;
 
-        var movedTile = GridManager.Instance.GetTileAtPosition(position);
-        for (int i = 0; i < dicePoint; i++)
+        foreach (var position in positions)
         {
+            var movedTile = GridManager.Instance.GetTileAtPosition(position);
             yield return new WaitForSeconds(1);
             movedTile.SetUnit(hero);
         }
     }
 
-    // 移動邏輯 TODO: 考慮之後會換地圖 x y 不會是固定的
-    private Vector2 GetMovePosition(Tile tile, int dicePoint)
+    // 移動邏輯 回傳 Vector 陣列為了讓他有一格一格走的效果 TODO: 考慮之後會換地圖 x y 不會是固定的
+    private Vector2[] GetMovePosition(Tile tile, int dicePoint)
     {
+        var positions = new List<Vector2>();
+
         // 當前位置
         var currentPositionX = tile.transform.position.x;
         var currentPositionY = tile.transform.position.y;
 
-        // 要移動的位置
-        var movePositionX = currentPositionX;
-        var movePositionY = currentPositionY;
-
         if (currentPositionX == 0)
         {
-            movePositionY = currentPositionY + dicePoint;
-            // 該轉彎了
-            if (movePositionY > 7)
+            var totalMoveCount = currentPositionY + dicePoint;
+            if (totalMoveCount > 7)
             {
-                var remainPoint = Mathf.Abs(7 - movePositionY);
-                movePositionY = 7;
-                movePositionX = remainPoint;
+                for (int i = 0; i < 7 - currentPositionY; i++)
+                {
+                    positions.Add(new Vector2(x: 0, y: currentPositionY + i + 1));
+                }
+                var remainPoint = Mathf.Abs(7 - totalMoveCount);
+                for (int i = 0; i < remainPoint; i++)
+                {
+                    positions.Add(new Vector2(x: i + 1, y: 7));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dicePoint; i++)
+                {
+                    positions.Add(new Vector2(x: 0, y: currentPositionY + i + 1));
+                }
             }
         }
         else if (currentPositionY == 7)
         {
-            movePositionX = currentPositionX + dicePoint;
-            if (movePositionX > 9)
+            var totalMoveCount = currentPositionX + dicePoint;
+            if (totalMoveCount > 9)
             {
-                var remainPoint = Mathf.Abs(9 - movePositionX);
-                movePositionX = 9;
-                movePositionY = 7 - remainPoint;
+                for (int i = 0; i < 9 - currentPositionX; i++)
+                {
+                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: 7));
+                }
+                var remainPoint = Mathf.Abs(9 - totalMoveCount);
+                for (int i = 0; i < remainPoint; i++)
+                {
+                    // 多扣一
+                    positions.Add(new Vector2(x: 9, y: 7 - i - 1));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dicePoint; i++)
+                {
+                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: 7));
+                }
             }
         }
         else if (currentPositionX == 9)
         {
-            movePositionY = currentPositionY - dicePoint;
+            var movePositionY = currentPositionY - dicePoint;
             if (movePositionY < 0)
             {
+                for (int i = 0; i < currentPositionY; i++)
+                {
+                    positions.Add(new Vector2(x: 9, y: currentPositionY - i - 1));
+                }
                 var remainPoint = Mathf.Abs(currentPositionY - dicePoint);
-                movePositionY = 0;
-                movePositionX = 9 - remainPoint;
+                for (int i = 0; i < remainPoint; i++)
+                {
+                    positions.Add(new Vector2(x: 9 - i - 1, y: 0));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dicePoint; i++)
+                {
+                    positions.Add(new Vector2(x: 9, y: currentPositionY - i - 1));
+                }
             }
         }
         else if (currentPositionY == 0)
         {
-            movePositionX = movePositionX - dicePoint;
+            var movePositionX = currentPositionX - dicePoint;
             if (movePositionX < 0)
             {
+                for (int i = 0; i < currentPositionX; i++)
+                {
+                    positions.Add(new Vector2(x: currentPositionX - i -1, y: 0));
+                }
                 var remainPoint = Mathf.Abs(currentPositionX - dicePoint);
-                movePositionX = 0;
-                movePositionY = remainPoint;
+                for (int i = 0; i < remainPoint; i++)
+                {
+                    positions.Add(new Vector2(x: 0, y: i + 1));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dicePoint; i++)
+                {
+                    positions.Add(new Vector2(x: currentPositionX - i - 1, y: 0));
+                }
             }
         }
 
-        return new Vector2(movePositionX, movePositionY);
+        return positions.ToArray();
     }
 }
