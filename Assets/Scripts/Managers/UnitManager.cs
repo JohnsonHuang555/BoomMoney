@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnHeros()
     {
-        var heros = new string[] {"Fire"};
+        var heros = new string[] { "Fire" };
 
         foreach (var hero in heros)
         {
@@ -67,7 +68,7 @@ public class UnitManager : MonoBehaviour
         MenuManager.Instance.ShowSelectedHero(hero);
     }
 
-    public void MovePlayer()
+    public IEnumerator MovePlayer()
     {
         // FIXME: Fire 改為當前玩家角色名稱
         var fireTile = GridManager.Instance.GetTileByName("Fire");
@@ -76,10 +77,14 @@ public class UnitManager : MonoBehaviour
         var hero = (BaseHero)fireTile.OccupiedUnit;
 
         var movedTile = GridManager.Instance.GetTileAtPosition(position);
-        movedTile.SetUnit(hero);
+        for (int i = 0; i < dicePoint; i++)
+        {
+            yield return new WaitForSeconds(1);
+            movedTile.SetUnit(hero);
+        }
     }
 
-    // 移動邏輯
+    // 移動邏輯 TODO: 考慮之後會換地圖 x y 不會是固定的
     private Vector2 GetMovePosition(Tile tile, int dicePoint)
     {
         // 當前位置
@@ -96,12 +101,42 @@ public class UnitManager : MonoBehaviour
             // 該轉彎了
             if (movePositionY > 7)
             {
-                var remainPoint = 7 - currentPositionY;
+                var remainPoint = Mathf.Abs(7 - movePositionY);
                 movePositionY = 7;
                 movePositionX = remainPoint;
             }
         }
+        else if (currentPositionY == 7)
+        {
+            movePositionX = currentPositionX + dicePoint;
+            if (movePositionX > 9)
+            {
+                var remainPoint = Mathf.Abs(9 - movePositionX);
+                movePositionX = 9;
+                movePositionY = 7 - remainPoint;
+            }
+        }
+        else if (currentPositionX == 9)
+        {
+            movePositionY = currentPositionY - dicePoint;
+            if (movePositionY < 0)
+            {
+                var remainPoint = Mathf.Abs(currentPositionY - dicePoint);
+                movePositionY = 0;
+                movePositionX = 9 - remainPoint;
+            }
+        }
+        else if (currentPositionY == 0)
+        {
+            movePositionX = movePositionX - dicePoint;
+            if (movePositionX < 0)
+            {
+                var remainPoint = Mathf.Abs(currentPositionX - dicePoint);
+                movePositionX = 0;
+                movePositionY = remainPoint;
+            }
+        }
 
         return new Vector2(movePositionX, movePositionY);
-    } 
+    }
 }

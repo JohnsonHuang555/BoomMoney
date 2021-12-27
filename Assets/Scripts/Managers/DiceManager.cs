@@ -18,10 +18,10 @@ public class DiceManager : MonoBehaviour
 
     public void RollDice()
     {
-        if (GameManager.Instance.GameState != GameState.HerosTurn)
-        {
-            return;
-        }
+        //if (GameManager.Instance.GameState != GameState.HerosTurn)
+        //{
+        //    return;
+        //}
 
         var point = Random.Range(1, 7);
         dicePoint = point;
