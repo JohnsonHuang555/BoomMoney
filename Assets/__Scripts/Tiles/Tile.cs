@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Tile : MonoBehaviour
+public abstract class Tile1 : MonoBehaviour
 {
     public string TileName;
     [SerializeField] protected SpriteRenderer render;
@@ -29,15 +29,15 @@ public abstract class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.GameState != GameState.HerosTurn)
-        {
-            return;
-        }
+        //if (GameManager1.Instance.GameState != __GameState.HerosTurn)
+        //{
+        //    return;
+        //}
 
         if (OccupiedUnit != null)
         {
             // 選的是英雄就要寫進 SelectedHero
-            if (OccupiedUnit.Faction == Faction.Hero)
+            if (OccupiedUnit.Faction == Faction.Heroes)
             {
                 UnitManager.Instance.SetSelectedHero((BaseHero)OccupiedUnit);
             }
@@ -63,13 +63,13 @@ public abstract class Tile : MonoBehaviour
 
     public void SetUnit(BaseUnit unit)
     {
-        if (unit.OccupedTile != null)
-        {
-            unit.OccupedTile.OccupiedUnit = null;
-        }
+        //if (unit.OccupedTile != null)
+        //{
+        //    unit.OccupedTile.OccupiedUnit = null;
+        //}
 
-        unit.transform.position = transform.position;
-        OccupiedUnit = unit;
-        unit.OccupedTile = this;
+        //unit.transform.position = transform.position;
+        //OccupiedUnit = unit;
+        //unit.OccupedTile = this;
     }
 }

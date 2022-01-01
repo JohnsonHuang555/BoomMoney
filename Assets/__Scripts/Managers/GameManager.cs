@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager1 Instance;
     public GameState GameState;
 
     void Awake()
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeState(GameState.GenerateGrid);
+        ChangeState((GameState)__GameState.GenerateGrid);
     }
 
     public void ChangeState(GameState newState)
@@ -22,19 +22,19 @@ public class GameManager : MonoBehaviour
         GameState = newState;
         switch (newState)
         {
-            case GameState.GenerateGrid:
-                GridManager.Instance.GenerateGrid();
+            case (GameState)__GameState.GenerateGrid:
+                GridManager1.Instance.GenerateGrid();
                 break;
-            case GameState.SpawnHeros:
+            case (GameState)__GameState.SpawnHeros:
                 UnitManager.Instance.SpawnHeros();
                 break;
-            case GameState.SpawnItems:
+            case (GameState)__GameState.SpawnItems:
                 // TODO: ¹D¨ã±¼¸¨
                 break;
-            case GameState.HerosTurn:
+            case (GameState)__GameState.HerosTurn:
                 break;
-            case GameState.MovePlayer:
-                StartCoroutine(UnitManager.Instance.MovePlayer());
+            case (GameState)__GameState.MovePlayer:
+                //StartCoroutine(UnitManager.Instance.MovePlayer());
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState
+public enum __GameState
 {
     GenerateGrid = 0,
     SpawnHeros = 1,

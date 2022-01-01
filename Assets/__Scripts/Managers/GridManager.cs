@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager1 : MonoBehaviour
 {
-    public static GridManager Instance;
+    public static GridManager1 Instance;
 
     [SerializeField] Tile grassTile, mountainTile;
     [SerializeField] Transform camera;
@@ -44,18 +44,18 @@ public class GridManager : MonoBehaviour
 
         camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
 
-        GameManager.Instance.ChangeState(GameState.SpawnHeros);
+        //GameManager.Instance.ChangeState(GameState.SpawnHeros);
     }
 
-    public Tile GetHeroSpawnTile()
-    {
-        return tiles.Where(t => t.Key.x < width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
-    }
+    //public Tile GetHeroSpawnTile()
+    //{
+    //    return tiles.Where(t => t.Key.x < width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
+    //}
 
-    public Tile GetEnemySpawnTile()
-    {
-        return tiles.Where(t => t.Key.x > width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
-    }
+    //public Tile GetEnemySpawnTile()
+    //{
+    //    return tiles.Where(t => t.Key.x > width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
+    //}
 
     public Tile GetTileAtPosition(Vector2 pos)
     {
@@ -63,8 +63,8 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-    public Tile GetTileByName(string name)
-    {
-        return tiles.Where(t => t.Value.OccupiedUnit && t.Value.OccupiedUnit.UnitName == name).First().Value;
-    }
+    //public Tile GetTileByName(string name)
+    //{
+    //    return tiles.Where(t => t.Value.OccupiedUnit && t.Value.OccupiedUnit.UnitName == name).First().Value;
+    //}
 }

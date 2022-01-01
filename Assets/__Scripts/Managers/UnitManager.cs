@@ -22,15 +22,15 @@ public class UnitManager : MonoBehaviour
 
         foreach (var hero in heros)
         {
-            var firePrefab = GetUnitByName<BaseHero>(Faction.Hero, hero);
+            var firePrefab = GetUnitByName<BaseHero>(Faction.Heroes, hero);
             var spawnedHero = Instantiate(firePrefab);
-            var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+            //var randomSpawnTile = GridManager1.Instance.GetHeroSpawnTile();
 
-            randomSpawnTile.SetUnit(spawnedHero);
+            //randomSpawnTile.SetUnit(spawnedHero);
         }
 
         DiceManager.Instance.ShowDiceButton();
-        GameManager.Instance.ChangeState(GameState.HerosTurn);
+        GameManager1.Instance.ChangeState((GameState)GameState1.HerosTurn);
     }
 
     /*
@@ -54,12 +54,12 @@ public class UnitManager : MonoBehaviour
 
     private T GetUnitByName<T>(Faction faction, string name) where T : BaseUnit
     {
-        return (T)units.Where(u => u.Faction == faction && u.UnitPrefab.UnitName == name).First().UnitPrefab;
+        return (T)units.Where(u => u.UnitPrefab.UnitName == name).First().UnitPrefab;
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
     {
-        return (T)units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
+        return (T)units.Where(u => u.name == "").OrderBy(o => Random.value).First().UnitPrefab;
     }
 
     public void SetSelectedHero(BaseHero hero)
@@ -68,21 +68,21 @@ public class UnitManager : MonoBehaviour
         MenuManager.Instance.ShowSelectedHero(hero);
     }
 
-    public IEnumerator MovePlayer()
-    {
-        // FIXME: Fire 改為當前玩家角色名稱
-        var fireTile = GridManager.Instance.GetTileByName("Fire");
-        var dicePoint = DiceManager.Instance.dicePoint;
-        var positions = GetMovePosition(fireTile, dicePoint);
-        var hero = (BaseHero)fireTile.OccupiedUnit;
+    //public IEnumerator MovePlayer()
+    //{
+    //    // FIXME: Fire 改為當前玩家角色名稱
+    //    //var fireTile = GridManager1.Instance.GetTileByName("Fire");
+    //    var dicePoint = DiceManager.Instance.dicePoint;
+    //    //var positions = GetMovePosition(fireTile, dicePoint);
+    //    //var hero = (BaseHero)fireTile.OccupiedUnit;
 
-        foreach (var position in positions)
-        {
-            var movedTile = GridManager.Instance.GetTileAtPosition(position);
-            yield return new WaitForSeconds(1);
-            movedTile.SetUnit(hero);
-        }
-    }
+    //    //foreach (var position in positions)
+    //    //{
+    //    //    var movedTile = GridManager1.Instance.GetTileAtPosition(position);
+    //    //    yield return new WaitForSeconds(1);
+    //    //    //movedTile.SetUnit(hero);
+    //    //}
+    //}
 
     // 移動邏輯 回傳 Vector 陣列為了讓他有一格一格走的效果 TODO: 考慮之後會換地圖 x y 不會是固定的
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
