@@ -1,15 +1,9 @@
 using UnityEngine;
 
-public class DiceManager1 : MonoBehaviour
+public class DiceManager : StaticInstance<DiceManager>
 {
-    public static DiceManager1 Instance;
     public int dicePoint = 0;
     [SerializeField] GameObject diceButton;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     public void ShowDiceButton()
     {
@@ -23,7 +17,7 @@ public class DiceManager1 : MonoBehaviour
         //    return;
         //}
 
-        diceButton.SetActive(false);
+        //diceButton.SetActive(false);
 
         var point = Random.Range(1, 7);
         dicePoint = point;

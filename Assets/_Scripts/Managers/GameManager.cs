@@ -1,14 +1,14 @@
 using UnityEngine;
 using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : StaticInstance<GameManager>
 {
     public static event Action<GameState> OnBeforeStateChanged; 
     public static event Action<GameState> OnAfterStateChanged;
 
     public GameState State { get; private set; }
 
-    // Start is called before the first frame update
+    // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
 
     public void ChangeState(GameState newState)
@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
 
     private void HandleStarting()
     {
+        // Do some start setup, could be environment, cinematics etc
+
+        // Eventually call ChangeState again with your next state
         ChangeState(GameState.GenerateMap);
     }
 
@@ -61,8 +64,20 @@ public class GameManager : MonoBehaviour
         UnitManager.Instance.SpawnPlayers();
         ChangeState(GameState.SpawningItems);
     }
+
+    private void HandlePlayerTurn()
+    {
+        // If you're making a turn based game, this could show the turn menu, highlight available units etc
+
+        // Keep track of how many units need to make a move, once they've all finished, change the state. This could
+        // be monitored in the unit manager or the units themselves.
+    }
 }
 
+/// <summary>
+/// This is obviously an example and I have no idea what kind of game you're making.
+/// You can use a similar manager for controlling your menu states or dynamic-cinematics, etc
+/// </summary>
 [Serializable]
 public enum GameState
 {
