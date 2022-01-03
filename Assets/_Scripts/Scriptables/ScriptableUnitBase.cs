@@ -11,9 +11,6 @@ public class ScriptableUnitBase : ScriptableObject
 
     // Used in game
     public CharacterUnitBase Prefab;
-
-    // Used in menus
-    public Sprite MenuSprite;
 }
 
 [Serializable]
