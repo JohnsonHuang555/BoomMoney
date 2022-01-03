@@ -37,26 +37,26 @@ public abstract class Tile1 : MonoBehaviour
         if (OccupiedUnit != null)
         {
             // 選的是英雄就要寫進 SelectedHero
-            if (OccupiedUnit.Faction == Faction.Heroes)
-            {
-                UnitManager.Instance.SetSelectedHero((BaseHero)OccupiedUnit);
-            }
-            else
-            {
-                if (UnitManager.Instance.SelectedHero != null)
-                {
-                    var enemy = (BaseEnemy)OccupiedUnit;
-                    Destroy(enemy.gameObject);
-                    UnitManager.Instance.SetSelectedHero(null);
-                }
-            }
+            //if (OccupiedUnit.Faction == Faction.Heroes)
+            //{
+            //    UnitManager1.Instance.SetSelectedHero((BaseHero)OccupiedUnit);
+            //}
+            //else
+            //{
+            //    if (UnitManager1.Instance.SelectedHero != null)
+            //    {
+            //        var enemy = (BaseEnemy)OccupiedUnit;
+            //        Destroy(enemy.gameObject);
+            //        UnitManager1.Instance.SetSelectedHero(null);
+            //    }
+            //}
         }
         else
         {
-            if (UnitManager.Instance.SelectedHero != null)
+            if (UnitManager1.Instance.SelectedHero != null)
             {
-                SetUnit(UnitManager.Instance.SelectedHero);
-                UnitManager.Instance.SetSelectedHero(null);
+                SetUnit(UnitManager1.Instance.SelectedHero);
+                UnitManager1.Instance.SetSelectedHero(null);
             }
         }
     }

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
                 HandleGenerateMap();
                 break;
             case GameState.SpawningPlayers:
+                HandleSpawnPlayers();
                 break;
             case GameState.SpawningItems:
                 break;
@@ -53,6 +54,12 @@ public class GameManager : MonoBehaviour
     {
         MapManager.Instance.GenerateMap();
         ChangeState(GameState.SpawningPlayers);
+    }
+
+    private void HandleSpawnPlayers()
+    {
+        UnitManager.Instance.SpawnPlayers();
+        ChangeState(GameState.SpawningItems);
     }
 }
 

@@ -8,8 +8,8 @@ using UnityEngine;
 public abstract class ScriptableExampleUnitBase : ScriptableObject {
     public Faction Faction;
 
-    [SerializeField] private Stats _stats;
-    public Stats BaseStats => _stats;
+    [SerializeField] private Stats1 _stats;
+    public Stats1 BaseStats => _stats;
 
     // Used in game
     public HeroUnitBase Prefab;
@@ -24,14 +24,14 @@ public abstract class ScriptableExampleUnitBase : ScriptableObject {
 /// We can pass this struct to the spawned prefab unit and alter them depending on conditions.
 /// </summary>
 [Serializable]
-public struct Stats {
+public struct Stats1 {
     public int Health;
     public int AttackPower;
     public int TravelDistance;
 }
 
 [Serializable]
-public enum Faction {
+public enum Faction1 {
     Heroes = 0,
     Enemies = 1,
 }

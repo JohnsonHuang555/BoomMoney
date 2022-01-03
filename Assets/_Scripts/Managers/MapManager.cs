@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MapManager : StaticInstance<MapManager>
 {
@@ -32,5 +33,16 @@ public class MapManager : StaticInstance<MapManager>
         }
 
         mainCamera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+    }
+
+    public Tile GetPlayerRandomTile()
+    {
+        return tiles.OrderBy(t => Random.value).First().Value;
+    }
+
+    public Tile GetTileAtPosition(Vector2 pos)
+    {
+        if (tiles.TryGetValue(pos, out var tile)) return tile;
+        return null;
     }
 }

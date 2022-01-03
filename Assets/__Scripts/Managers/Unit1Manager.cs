@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitManager : MonoBehaviour
+public class UnitManager1 : MonoBehaviour
 {
-    public static UnitManager Instance;
+    public static UnitManager1 Instance;
     public BaseHero SelectedHero;
     List<ScriptableUnit> units;
 
@@ -22,8 +22,8 @@ public class UnitManager : MonoBehaviour
 
         foreach (var hero in heros)
         {
-            var firePrefab = GetUnitByName<BaseHero>(Faction.Heroes, hero);
-            var spawnedHero = Instantiate(firePrefab);
+            //var firePrefab = GetUnitByName<BaseHero>(Faction.Heroes, hero);
+            //var spawnedHero = Instantiate(firePrefab);
             //var randomSpawnTile = GridManager1.Instance.GetHeroSpawnTile();
 
             //randomSpawnTile.SetUnit(spawnedHero);

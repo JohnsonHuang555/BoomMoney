@@ -19,6 +19,6 @@ public class ExampleUnitManager : StaticInstance<ExampleUnitManager> {
         var stats = tarodevScriptable.BaseStats;
         stats.Health += 20;
 
-        spawned.SetStats(stats);
+        //spawned.SetStats(stats);
     }
 }

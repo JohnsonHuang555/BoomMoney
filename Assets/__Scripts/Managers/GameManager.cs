@@ -26,7 +26,7 @@ public class GameManager1 : MonoBehaviour
                 GridManager1.Instance.GenerateGrid();
                 break;
             case (GameState)__GameState.SpawnHeros:
-                UnitManager.Instance.SpawnHeros();
+                UnitManager1.Instance.SpawnHeros();
                 break;
             case (GameState)__GameState.SpawnItems:
                 // TODO: ¹D¨ã±¼¸¨
