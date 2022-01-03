@@ -10,7 +10,8 @@ public class UnitManager : StaticInstance<UnitManager>
         //{
 
         //}
-        SpawnUnit(CharacterType.Fire, new Vector3(1, 0, 0));
+        var randomTile = MapManager.Instance.GetRandomTile();
+        SpawnUnit(CharacterType.Fire, randomTile.transform.position);
     }
 
     private void SpawnUnit(CharacterType c, Vector3 pos)

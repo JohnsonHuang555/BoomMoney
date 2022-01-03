@@ -35,7 +35,7 @@ public class MapManager : StaticInstance<MapManager>
         mainCamera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
     }
 
-    public Tile GetPlayerRandomTile()
+    public Tile GetRandomTile()
     {
         return tiles.OrderBy(t => Random.value).First().Value;
     }
