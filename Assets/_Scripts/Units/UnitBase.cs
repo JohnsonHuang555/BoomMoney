@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +7,9 @@ using UnityEngine;
 public class UnitBase : MonoBehaviour {
     public Stats Stats { get; private set; }
     public virtual void SetStats(Stats stats) => Stats = stats;
+
+    public Tile OccupedTile;
+    public string UnitName;
 
     public virtual void TakeDamage(int dmg) {
         

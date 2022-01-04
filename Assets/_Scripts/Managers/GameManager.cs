@@ -29,8 +29,13 @@ public class GameManager : StaticInstance<GameManager>
                 HandleSpawnPlayers();
                 break;
             case GameState.SpawningItems:
+                // TODO: ¤§«á°µ
                 break;
             case GameState.PlayerTurn:
+                HandlePlayerTurn();
+                break;
+            case GameState.MovePlayer:
+                HandleMovePlayer();
                 break;
             case GameState.Win:
                 break;
@@ -62,7 +67,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleSpawnPlayers()
     {
         UnitManager.Instance.SpawnPlayers();
-        ChangeState(GameState.SpawningItems);
+        ChangeState(GameState.PlayerTurn);
     }
 
     private void HandlePlayerTurn()
@@ -71,6 +76,13 @@ public class GameManager : StaticInstance<GameManager>
 
         // Keep track of how many units need to make a move, once they've all finished, change the state. This could
         // be monitored in the unit manager or the units themselves.
+        DiceManager.Instance.ShowDiceButton();
+    }
+
+    private void HandleMovePlayer()
+    {
+        DiceManager.Instance.ShowDiceButton();
+        StartCoroutine(UnitManager.Instance.MovePlayer());
     }
 }
 
@@ -86,6 +98,7 @@ public enum GameState
     SpawningPlayers = 2,
     SpawningItems = 3,
     PlayerTurn = 4,
-    Win = 5,
-    Lose = 6,
+    MovePlayer = 5,
+    Win = 6,
+    Lose = 7,
 }

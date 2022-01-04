@@ -12,7 +12,7 @@ public class DiceManager : StaticInstance<DiceManager>
 
     public void RollDice()
     {
-        //if (GameManager.Instance.GameState != GameState.HerosTurn)
+        //if (GameManager.Instance.State != GameState.PlayerTurn)
         //{
         //    return;
         //}
@@ -21,6 +21,7 @@ public class DiceManager : StaticInstance<DiceManager>
 
         var point = Random.Range(1, 7);
         dicePoint = point;
-        //GameManager.Instance.ChangeState(GameState.MovePlayer);
+
+        GameManager.Instance.ChangeState(GameState.MovePlayer);
     }
 }

@@ -45,4 +45,9 @@ public class MapManager : StaticInstance<MapManager>
         if (tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
+
+    public Tile GetTileByCharacterName(string name)
+    {
+        return tiles.Where(t => t.Value.OccupiedUnit && t.Value.OccupiedUnit.UnitName == name).First().Value;
+    }
 }
