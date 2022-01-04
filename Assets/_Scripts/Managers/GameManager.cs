@@ -81,7 +81,6 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleMovePlayer()
     {
-        DiceManager.Instance.ShowDiceButton();
         StartCoroutine(UnitManager.Instance.MovePlayer());
     }
 }
