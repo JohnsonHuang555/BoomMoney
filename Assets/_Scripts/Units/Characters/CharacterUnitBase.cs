@@ -3,9 +3,9 @@ using UnityEngine;
 public class CharacterUnitBase : UnitBase
 {
     private bool canMove;
-    private void Awake() => ExampleGameManager.OnBeforeStateChanged += OnStateChanged;
+    private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
-    private void OnDestroy() => ExampleGameManager.OnBeforeStateChanged -= OnStateChanged;
+    private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
     private void OnStateChanged(GameState newState)
     {
         if (newState == GameState.PlayerTurn) canMove = true;

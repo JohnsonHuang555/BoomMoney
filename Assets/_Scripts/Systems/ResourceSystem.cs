@@ -9,9 +9,6 @@ using UnityEngine;
 /// </summary>
 public class ResourceSystem : StaticInstance<ResourceSystem>
 {
-    public List<ScriptableExampleHero> ExampleHeroes { get; private set; }
-    private Dictionary<ExampleHeroType, ScriptableExampleHero> _ExampleHeroesDict;
-
     public List<ScriptableCharacter> Characters { get; private set; }
     private Dictionary<CharacterType, ScriptableCharacter> CharactersDict;
 
@@ -27,7 +24,5 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
         CharactersDict = Characters.ToDictionary(r => r.CharacterType, r => r);
     }
 
-    public ScriptableExampleHero GetExampleHero(ExampleHeroType t) => _ExampleHeroesDict[t];
-    public ScriptableExampleHero GetRandomHero() => ExampleHeroes[Random.Range(0, ExampleHeroes.Count)];
     public ScriptableCharacter GetCharacter(CharacterType c) => CharactersDict[c];
 }
