@@ -1,9 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
     public string TileName;
     [SerializeField] protected SpriteRenderer render;
+    [SerializeField] float travelTime = 0.2f;
     //[SerializeField] private bool isWalkable;
 
     public UnitBase OccupiedUnit;
@@ -20,7 +22,7 @@ public class Tile : MonoBehaviour
             unit.OccupedTile.OccupiedUnit = null;
         }
 
-        unit.transform.position = transform.position;
+        unit.transform.DOMove(transform.position, travelTime);
         OccupiedUnit = unit;
         unit.OccupedTile = this;
     }
