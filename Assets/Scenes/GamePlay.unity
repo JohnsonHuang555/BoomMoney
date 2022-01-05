@@ -756,10 +756,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1444402621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 233358339c8ff2c4da9738ac81f75dd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 83072c21830b5014cbd231299e5f96c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <State>k__BackingField: 0
 --- !u!1 &1775328698
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,11 +799,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1775328698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556b361e117209f458e66bebdec0ee85, type: 3}
+  m_Script: {fileID: 11500000, guid: f9103d4d47ccf124daf5aaa322a5ff31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dicePoint: 0
-  diceButton: {fileID: 1220175028}
+  diceButton: {fileID: 0}
 --- !u!1 &1871759907
 GameObject:
   m_ObjectHideFlags: 0
