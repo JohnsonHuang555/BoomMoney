@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dicePoint: 0
-  diceButton: {fileID: 0}
+  diceButton: {fileID: 1220175028}
 --- !u!1 &1871759907
 GameObject:
   m_ObjectHideFlags: 0
