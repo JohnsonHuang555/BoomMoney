@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConfirmModalManager : StaticInstance<ConfirmModalManager>
@@ -7,15 +5,23 @@ public class ConfirmModalManager : StaticInstance<ConfirmModalManager>
     [SerializeField] GameObject confirmModal;
 
     public string description;
+    public ConfirmType confirmType;
 
-    public void ShowModal(AA aa)
+    public void ShowModal(ConfirmModalParams cp)
     {
-        description = aa.description;
+        description = cp.description;
+        confirmType = cp.confirmType;
         confirmModal.SetActive(true);
+    }
+
+    public void HideModal()
+    {
+        confirmModal.SetActive(false);
     }
 }
 
-public struct AA
+public struct ConfirmModalParams
 {
     public string description;
+    public ConfirmType confirmType;
 }
