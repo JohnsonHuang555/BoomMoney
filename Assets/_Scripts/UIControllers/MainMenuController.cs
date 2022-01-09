@@ -11,8 +11,7 @@ public class MainMenuController : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
         startButton = root.Q<Button>("start-button");
-
-        startButton.clicked += StartButtonPressed;
+        startButton.RegisterCallback<ClickEvent>(ev => StartButtonPressed());
     }
 
     void StartButtonPressed()

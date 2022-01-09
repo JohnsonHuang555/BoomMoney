@@ -44,7 +44,7 @@ public class UnitManager : StaticInstance<UnitManager>
         }
 
         yield return new WaitForSeconds(1);
-        ConfirmModalManager.Instance.ShowModal();
+        ConfirmModalManager.Instance.ShowModal(new AA { description = "123456" });
     }
 
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
