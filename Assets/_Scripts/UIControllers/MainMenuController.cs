@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class UIController : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     public Button startButton;
 
