@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
-        startButton = root.Q<Button>("StartButton");
+        startButton = root.Q<Button>("start-button");
 
         startButton.clicked += StartButtonPressed;
     }

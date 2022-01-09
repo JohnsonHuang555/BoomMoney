@@ -42,6 +42,9 @@ public class UnitManager : StaticInstance<UnitManager>
             yield return new WaitForSeconds(1);
             movedTile.SetUnit(fire);
         }
+
+        yield return new WaitForSeconds(1);
+        ConfirmModalManager.Instance.ShowModal();
     }
 
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
