@@ -8,6 +8,9 @@ public class GameManager : StaticInstance<GameManager>
 
     public GameState State { get; private set; }
 
+    // FIXME: ¼È®É©ñ³o
+    [SerializeField] GameObject endRoundButton;
+
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
 
@@ -37,6 +40,8 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.MovePlayer:
                 HandleMovePlayer();
                 break;
+            case GameState.PlayerRoundTime:
+                break;
             case GameState.Win:
                 break;
             case GameState.Lose:
@@ -48,6 +53,17 @@ public class GameManager : StaticInstance<GameManager>
         OnAfterStateChanged?.Invoke(newState);
 
         Debug.Log($"New state: {newState}");
+    }
+
+    public void ShowEndRoundButton()
+    {
+        endRoundButton.SetActive(true);
+    }
+
+    public void OnEndRound()
+    {
+        endRoundButton.SetActive(false);
+        ChangeState(GameState.PlayerTurn);
     }
 
     private void HandleStarting()
@@ -98,6 +114,7 @@ public enum GameState
     SpawningItems = 3,
     PlayerTurn = 4,
     MovePlayer = 5,
-    Win = 6,
-    Lose = 7,
+    PlayerRoundTime = 6,
+    Win = 7,
+    Lose = 8,
 }

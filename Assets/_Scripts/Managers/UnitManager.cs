@@ -44,6 +44,7 @@ public class UnitManager : StaticInstance<UnitManager>
         }
 
         yield return new WaitForSeconds(1);
+        GameManager.Instance.ChangeState(GameState.PlayerRoundTime);
         ConfirmModalManager.Instance.ShowModal(
             new ConfirmModalParams
             {
