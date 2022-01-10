@@ -48,6 +48,6 @@ public class MapManager : StaticInstance<MapManager>
 
     public Tile GetTileByCharacterName(string name)
     {
-        return tiles.Where(t => t.Value.OccupiedUnit && t.Value.OccupiedUnit.UnitName == name).First().Value;
+        return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
 }

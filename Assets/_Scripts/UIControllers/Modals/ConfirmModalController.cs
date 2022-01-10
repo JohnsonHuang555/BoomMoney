@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ConfirmModalController : StaticInstance<ConfirmModalController>
@@ -22,7 +23,14 @@ public class ConfirmModalController : StaticInstance<ConfirmModalController>
 
     void ConfirmPressed()
     {
-
+        var confirmType = ConfirmModalManager.Instance.confirmType;
+        switch (confirmType)
+        {
+            case ConfirmType.PutBoom:
+                UnitManager.Instance.SpawnItem(ItemType.Bomb);
+                CancelPressed();
+                break;
+        }
     }
 
     void CancelPressed()

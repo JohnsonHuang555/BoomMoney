@@ -12,6 +12,9 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public List<ScriptableCharacter> Characters { get; private set; }
     private Dictionary<CharacterType, ScriptableCharacter> CharactersDict;
 
+    public List<ScriptableItem> Items { get; private set; }
+    private Dictionary<ItemType, ScriptableItem> ItemsDict;
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,7 +25,11 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     {
         Characters = Resources.LoadAll<ScriptableCharacter>("Characters").ToList();
         CharactersDict = Characters.ToDictionary(r => r.CharacterType, r => r);
+
+        Items = Resources.LoadAll<ScriptableItem>("Items").ToList();
+        ItemsDict = Items.ToDictionary(r => r.ItemType, r => r);
     }
 
     public ScriptableCharacter GetCharacter(CharacterType c) => CharactersDict[c];
+    public ScriptableItem GetItem(ItemType i) => ItemsDict[i];
 }

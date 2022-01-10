@@ -8,19 +8,11 @@ public class ScriptableUnitBase : ScriptableObject
     [SerializeField] private Stats _stats;
 
     public Stats BaseStats => _stats;
-
-    // Used in game
-    public CharacterUnitBase Prefab;
-}
-
-[Serializable]
-public struct Stats
-{
-    public int Health;
 }
 
 [Serializable]
 public enum Faction
 {
     Characters = 0,
+    Items = 1,
 }

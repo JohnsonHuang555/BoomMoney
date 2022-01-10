@@ -13,20 +13,20 @@ public class UnitManager : StaticInstance<UnitManager>
         //{
 
         //}
-        SpawnUnit(CharacterType.Fire);
+        SpawnPlayer(CharacterType.Fire);
     }
 
-    private void SpawnUnit(CharacterType c)
+    private void SpawnPlayer(CharacterType c)
     {
         var randomTile = MapManager.Instance.GetRandomTile();
-        var fireScriptable = ResourceSystem.Instance.GetCharacter(c);
-        var spawnedFire = Instantiate(fireScriptable.Prefab, randomTile.transform.position, Quaternion.identity);
+        var scriptable = ResourceSystem.Instance.GetCharacter(c);
+        var spawnedPlayer = Instantiate(scriptable.Prefab, randomTile.transform.position, Quaternion.identity);
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
-        var stats = fireScriptable.BaseStats;
+        var stats = scriptable.BaseStats;
 
-        spawnedFire.SetStats(stats);
-        randomTile.SetUnit(spawnedFire);
+        spawnedPlayer.SetStats(stats);
+        randomTile.SetPlayer(spawnedPlayer);
     }
 
     public IEnumerator MovePlayer()
@@ -34,13 +34,13 @@ public class UnitManager : StaticInstance<UnitManager>
         var fireTile = MapManager.Instance.GetTileByCharacterName("Fire");
         var dicePoint = DiceManager.Instance.dicePoint;
         var positions = GetMovePosition(fireTile, dicePoint);
-        var fire = (CharacterUnitBase)fireTile.OccupiedUnit;
+        var fire = (CharacterUnitBase)fireTile.OccupiedPlayer;
 
         foreach (var position in positions)
         {
             var movedTile = MapManager.Instance.GetTileAtPosition(position);
             yield return new WaitForSeconds(1);
-            movedTile.SetUnit(fire);
+            movedTile.SetPlayer(fire);
         }
 
         yield return new WaitForSeconds(1);
@@ -155,5 +155,19 @@ public class UnitManager : StaticInstance<UnitManager>
         }
 
         return positions.ToArray();
+    }
+
+    public void SpawnItem(ItemType i)
+    {
+        // TODO: ¤£¯à¼g¦º
+        var tile = MapManager.Instance.GetTileByCharacterName("Fire");
+        var scriptable = ResourceSystem.Instance.GetItem(i);
+        var spawnedItem = Instantiate(scriptable.Prefab, tile.transform.position, Quaternion.identity);
+
+        // Apply possible modifications here such as potion boosts, team synergies, etc
+        var stats = scriptable.BaseStats;
+
+        spawnedItem.SetStats(stats);
+        tile.SetBomb(spawnedItem);
     }
 }

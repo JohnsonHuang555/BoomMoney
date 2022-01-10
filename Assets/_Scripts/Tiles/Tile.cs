@@ -8,22 +8,36 @@ public class Tile : MonoBehaviour
     [SerializeField] float travelTime = 0.2f;
     //[SerializeField] private bool isWalkable;
 
-    public UnitBase OccupiedUnit;
+    // TODO: 可能多個玩家站在同一格
+    public UnitBase OccupiedPlayer;
+    public UnitBase OccupiedBomb;
 
     public virtual void Init(int x, int y)
     {
 
     }
 
-    public void SetUnit(UnitBase unit)
+    public void SetPlayer(UnitBase unit)
     {
         if (unit.OccupedTile != null)
         {
-            unit.OccupedTile.OccupiedUnit = null;
+            unit.OccupedTile.OccupiedPlayer = null;
         }
 
         unit.transform.DOMove(transform.position, travelTime);
-        OccupiedUnit = unit;
+        OccupiedPlayer = unit;
+        unit.OccupedTile = this;
+    }
+
+    public void SetBomb(UnitBase unit)
+    {
+        if (unit.OccupedTile != null)
+        {
+            unit.OccupedTile.OccupiedBomb = null;
+        }
+
+        unit.transform.position = transform.position;
+        OccupiedBomb = unit;
         unit.OccupedTile = this;
     }
 }
