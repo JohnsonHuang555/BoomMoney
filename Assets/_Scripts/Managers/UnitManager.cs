@@ -45,12 +45,6 @@ public class UnitManager : StaticInstance<UnitManager>
 
         yield return new WaitForSeconds(1);
         GameManager.Instance.ChangeState(GameState.PlayerRoundTime);
-        ConfirmModalManager.Instance.ShowModal(
-            new ConfirmModalParams
-            {
-                description = "請問要放炸彈嗎?",
-                confirmType = ConfirmType.PutBoom
-            });
     }
 
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)

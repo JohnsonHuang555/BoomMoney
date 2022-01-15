@@ -25,27 +25,27 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.Starting:
                 HandleStarting();
                 break;
-            case GameState.GenerateMap:
-                HandleGenerateMap();
-                break;
-            case GameState.SpawningPlayers:
-                HandleSpawnPlayers();
-                break;
-            case GameState.SpawningItems:
-                // TODO: 之後做
-                break;
-            case GameState.PlayerTurn:
-                HandlePlayerTurn();
-                break;
-            case GameState.MovePlayer:
-                HandleMovePlayer();
-                break;
-            case GameState.PlayerRoundTime:
-                break;
-            case GameState.Win:
-                break;
-            case GameState.Lose:
-                break;
+            //case GameState.GenerateMap:
+            //    HandleGenerateMap();
+            //    break;
+            //case GameState.SpawningPlayers:
+            //    HandleSpawnPlayers();
+            //    break;
+            //case GameState.SpawningItems:
+            //    // TODO: 之後做
+            //    break;
+            //case GameState.PlayerTurn:
+            //    HandlePlayerTurn();
+            //    break;
+            //case GameState.MovePlayer:
+            //    HandleMovePlayer();
+            //    break;
+            //case GameState.PlayerRoundTime:
+            //    break;
+            //case GameState.Win:
+            //    break;
+            //case GameState.Lose:
+            //    break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null); ;
         }
@@ -71,7 +71,7 @@ public class GameManager : StaticInstance<GameManager>
         // Do some start setup, could be environment, cinematics etc
 
         // Eventually call ChangeState again with your next state
-        ChangeState(GameState.GenerateMap);
+        //ChangeState(GameState.GenerateMap);
     }
 
     private void HandleGenerateMap()

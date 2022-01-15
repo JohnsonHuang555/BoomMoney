@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalTile
       objectReference: {fileID: 0}
+    - target: {fileID: 8797797439527435770, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797797439527435770, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797797439527435770, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.4848485
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -77348970, guid: 614899c65f9d1b844955b4e5fd27188c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
 --- !u!1 &6109941678355465038 stripped
@@ -81,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileName: NormalTile
   render: {fileID: 8591117447888748934}
-  isWalkable: 1
+  travelTime: 0.2
+  OccupiedPlayer: {fileID: 0}
+  OccupiedBomb: {fileID: 0}
   baseColor: {r: 0.21634129, g: 0.9528302, b: 0.112362035, a: 1}
   offsetColor: {r: 0.16740988, g: 0.7075472, b: 0.09011214, a: 1}

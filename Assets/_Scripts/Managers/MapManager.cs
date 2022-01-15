@@ -19,20 +19,20 @@ public class MapManager : StaticInstance<MapManager>
         {
             for (int y = 0; y < height; y++)
             {
-                Tile spawnedTile;
-                if (x == 0 || x == 9 || y == 0 || y == 7)
-                {
-                    spawnedTile = Instantiate(normalTile, new Vector3(x, y), Quaternion.identity);
+                //Tile spawnedTile;
+                //if (x == 0 || x == 9 || y == 0 || y == 7)
+                //{
+                Instantiate(normalTile, new Vector3(x, y), Quaternion.identity);
 
-                    spawnedTile.name = $"Tile {x} {y}";
-                    spawnedTile.Init(x, y);
-                    tiles[new Vector2(x, y)] = spawnedTile;
-                }
+                //    spawnedTile.name = $"Tile {x} {y}";
+                //    spawnedTile.Init(x, y);
+                //    tiles[new Vector2(x, y)] = spawnedTile;
+                //}
 
             }
         }
 
-        mainCamera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        mainCamera.transform.position = new Vector3((float)width / 2, (float)height / 2, -10);
     }
 
     public Tile GetRandomTile()
