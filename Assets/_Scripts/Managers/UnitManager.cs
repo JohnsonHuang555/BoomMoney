@@ -47,6 +47,7 @@ public class UnitManager : StaticInstance<UnitManager>
         GameManager.Instance.ChangeState(GameState.PlayerRoundTime);
     }
 
+    // 逆時針 TODO: 再做一個方法跑順時針
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
     {
         var positions = new List<Vector2>();

@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8797797439527435770, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8797797439527435770, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -71,6 +71,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 113157994, guid: 614899c65f9d1b844955b4e5fd27188c, type: 3}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
 --- !u!1 &6109941678355465038 stripped
@@ -100,5 +112,7 @@ MonoBehaviour:
   travelTime: 0.2
   OccupiedPlayer: {fileID: 0}
   OccupiedBomb: {fileID: 0}
+  x: 0
+  y: 0
   baseColor: {r: 0.21634129, g: 0.9528302, b: 0.112362035, a: 1}
   offsetColor: {r: 0.16740988, g: 0.7075472, b: 0.09011214, a: 1}

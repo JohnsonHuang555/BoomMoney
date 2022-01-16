@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Lean.Gui;
 
 public class GameManager : StaticInstance<GameManager>
 {
@@ -41,6 +42,7 @@ public class GameManager : StaticInstance<GameManager>
                 HandleMovePlayer();
                 break;
             case GameState.PlayerRoundTime:
+                HandlePlayerRoundTime();
                 break;
             case GameState.Win:
                 break;
@@ -98,6 +100,11 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleMovePlayer()
     {
         StartCoroutine(UnitManager.Instance.MovePlayer());
+    }
+
+    private void HandlePlayerRoundTime()
+    {
+        LeanWindow.TurnOnAll("Modal (LeanWindow)");
     }
 }
 
