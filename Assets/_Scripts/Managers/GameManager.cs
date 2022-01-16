@@ -25,9 +25,9 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.Starting:
                 HandleStarting();
                 break;
-            //case GameState.GenerateMap:
-            //    HandleGenerateMap();
-            //    break;
+            case GameState.GenerateMap:
+                HandleGenerateMap();
+                break;
             //case GameState.SpawningPlayers:
             //    HandleSpawnPlayers();
             //    break;
@@ -71,13 +71,13 @@ public class GameManager : StaticInstance<GameManager>
         // Do some start setup, could be environment, cinematics etc
 
         // Eventually call ChangeState again with your next state
-        //ChangeState(GameState.GenerateMap);
+        ChangeState(GameState.GenerateMap);
     }
 
     private void HandleGenerateMap()
     {
         MapManager.Instance.GenerateMap();
-        ChangeState(GameState.SpawningPlayers);
+        //ChangeState(GameState.SpawningPlayers);
     }
 
     private void HandleSpawnPlayers()
