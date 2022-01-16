@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor;
+using System;
 
 public class MapManager : StaticInstance<MapManager>
 {
@@ -15,7 +15,9 @@ public class MapManager : StaticInstance<MapManager>
     // 經典地圖 TODO: 之後要做不同類型的圖
     public void GenerateMap()
     {
+        // 塞進 Environment 裡面
         var environment = GameObject.FindGameObjectWithTag("Environment");
+        float lastTilePositionY = 0f;
         // 產地圖
         tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < size.x; x++)
@@ -34,17 +36,22 @@ public class MapManager : StaticInstance<MapManager>
                     spawnedTile.Init(x, y);
                     spawnedTile.transform.SetParent(environment.transform);
                     tiles[new Vector2(x, y)] = spawnedTile;
+                    if (x == size.x - 1 && y == size.y - 1)
+                    {
+                        lastTilePositionY = Math.Abs(spawnedTile.transform.position.y) / 2 - 1;
+                    }
                 }
-
             }
         }
 
-        mainCamera.transform.position = new Vector3(size.x / 2, size.y / 2, -10);
+        //mainCamera.transform.position = new Vector3(0, 0, -10);
+        environment.transform.position = new Vector3(0, lastTilePositionY, 0);
+        Camera.main.orthographicSize = (float)MapCameraSize.Small;
     }
 
     public Tile GetRandomTile()
     {
-        return tiles.OrderBy(t => Random.value).First().Value;
+        return tiles.OrderBy(t => UnityEngine.Random.value).First().Value;
     }
 
     public Tile GetTileAtPosition(Vector2 pos)
@@ -57,4 +64,11 @@ public class MapManager : StaticInstance<MapManager>
     {
         return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
+}
+
+public enum MapCameraSize
+{
+    Small = 8,
+    Medium = 10,
+    Large = 12,
 }

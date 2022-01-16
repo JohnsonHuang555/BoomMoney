@@ -14,7 +14,6 @@ public class Tile : MonoBehaviour
 
     public virtual void Init(int x, int y)
     {
-
     }
 
     public void SetPlayer(UnitBase unit)
