@@ -10,12 +10,12 @@ public class MapManager : StaticInstance<MapManager>
     [SerializeField] Vector2 size;
     [SerializeField] Vector2 offset;
 
-    // TODO: 大小要可以調整
-    
     Dictionary<Vector2, Tile> tiles;
 
+    // 經典地圖 TODO: 之後要做不同類型的圖
     public void GenerateMap()
     {
+        var environment = GameObject.FindGameObjectWithTag("Environment");
         // 產地圖
         tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < size.x; x++)
@@ -23,18 +23,23 @@ public class MapManager : StaticInstance<MapManager>
             for (int y = 0; y < size.y; y++)
             {
                 Tile spawnedTile;
-                if (x == 0 || x == 9 || y == 0 || y == 7)
+                if (x == 0 || x == size.x - 1 || y == 0 || y == size.y - 1)
                 {
-                    spawnedTile = Instantiate(normalTile, new Vector3((x-y)*offset.x, -(x+y)*offset.y, 0), Quaternion.identity);
+                    spawnedTile = Instantiate(
+                        normalTile,
+                        new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size.x + size.y)),
+                        Quaternion.identity
+                    );
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.Init(x, y);
+                    spawnedTile.transform.SetParent(environment.transform);
                     tiles[new Vector2(x, y)] = spawnedTile;
                 }
 
             }
         }
 
-        //mainCamera.transform.position = new Vector3(size.x / 2, size.y / 2, -10);
+        mainCamera.transform.position = new Vector3(size.x / 2, size.y / 2, -10);
     }
 
     public Tile GetRandomTile()
