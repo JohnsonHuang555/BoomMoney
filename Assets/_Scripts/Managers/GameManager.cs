@@ -28,24 +28,24 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.GenerateMap:
                 HandleGenerateMap();
                 break;
-            //case GameState.SpawningPlayers:
-            //    HandleSpawnPlayers();
-            //    break;
-            //case GameState.SpawningItems:
-            //    // TODO: 之後做
-            //    break;
-            //case GameState.PlayerTurn:
-            //    HandlePlayerTurn();
-            //    break;
-            //case GameState.MovePlayer:
-            //    HandleMovePlayer();
-            //    break;
-            //case GameState.PlayerRoundTime:
-            //    break;
-            //case GameState.Win:
-            //    break;
-            //case GameState.Lose:
-            //    break;
+            case GameState.SpawningPlayers:
+                HandleSpawnPlayers();
+                break;
+            case GameState.SpawningItems:
+                // TODO: 之後做
+                break;
+            case GameState.PlayerTurn:
+                HandlePlayerTurn();
+                break;
+            case GameState.MovePlayer:
+                HandleMovePlayer();
+                break;
+            case GameState.PlayerRoundTime:
+                break;
+            case GameState.Win:
+                break;
+            case GameState.Lose:
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null); ;
         }
@@ -77,7 +77,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleGenerateMap()
     {
         MapManager.Instance.GenerateMap();
-        //ChangeState(GameState.SpawningPlayers);
+        ChangeState(GameState.SpawningPlayers);
     }
 
     private void HandleSpawnPlayers()

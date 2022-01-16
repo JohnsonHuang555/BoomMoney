@@ -12,12 +12,12 @@ public class DiceManager : StaticInstance<DiceManager>
 
     public void RollDice()
     {
-        if (GameManager.Instance.State != GameState.PlayerTurn)
-        {
-            return;
-        }
+        //if (GameManager.Instance.State != GameState.PlayerTurn)
+        //{
+        //    return;
+        //}
 
-        diceButton.SetActive(false);
+        //diceButton.SetActive(false);
 
         var point = Random.Range(1, 7);
         dicePoint = point;

@@ -11,9 +11,13 @@ public class Tile : MonoBehaviour
     // TODO: 可能多個玩家站在同一格
     public UnitBase OccupiedPlayer;
     public UnitBase OccupiedBomb;
+    public int x;
+    public int y;
 
     public virtual void Init(int x, int y)
     {
+        this.x = x;
+        this.y = y;
     }
 
     public void SetPlayer(UnitBase unit)

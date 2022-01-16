@@ -50,24 +50,25 @@ public class UnitManager : StaticInstance<UnitManager>
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
     {
         var positions = new List<Vector2>();
+        var mapSize = MapManager.Instance.size;
 
         // 當前位置
-        var currentPositionX = tile.transform.position.x;
-        var currentPositionY = tile.transform.position.y;
+        var currentPositionX = tile.x;
+        var currentPositionY = tile.y;
 
         if (currentPositionX == 0)
         {
             var totalMoveCount = currentPositionY + dicePoint;
-            if (totalMoveCount > 7)
+            if (totalMoveCount > mapSize.y - 1)
             {
-                for (int i = 0; i < 7 - currentPositionY; i++)
+                for (int i = 0; i < mapSize.y - 1 - currentPositionY; i++)
                 {
                     positions.Add(new Vector2(x: 0, y: currentPositionY + i + 1));
                 }
-                var remainPoint = Mathf.Abs(7 - totalMoveCount);
+                var remainPoint = Mathf.Abs(mapSize.y - 1 - totalMoveCount);
                 for (int i = 0; i < remainPoint; i++)
                 {
-                    positions.Add(new Vector2(x: i + 1, y: 7));
+                    positions.Add(new Vector2(x: i + 1, y: mapSize.y - 1));
                 }
             }
             else
@@ -78,50 +79,50 @@ public class UnitManager : StaticInstance<UnitManager>
                 }
             }
         }
-        else if (currentPositionY == 7)
+        else if (currentPositionY == mapSize.y - 1)
         {
             var totalMoveCount = currentPositionX + dicePoint;
-            if (totalMoveCount > 9)
+            if (totalMoveCount > mapSize.x - 1)
             {
-                for (int i = 0; i < 9 - currentPositionX; i++)
+                for (int i = 0; i < mapSize.x - 1 - currentPositionX; i++)
                 {
-                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: 7));
+                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: mapSize.y - 1));
                 }
-                var remainPoint = Mathf.Abs(9 - totalMoveCount);
+                var remainPoint = Mathf.Abs(mapSize.x - 1 - totalMoveCount);
                 for (int i = 0; i < remainPoint; i++)
                 {
                     // 多扣一
-                    positions.Add(new Vector2(x: 9, y: 7 - i - 1));
+                    positions.Add(new Vector2(x: mapSize.x - 1, y: mapSize.y - 1 - i - 1));
                 }
             }
             else
             {
                 for (int i = 0; i < dicePoint; i++)
                 {
-                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: 7));
+                    positions.Add(new Vector2(x: currentPositionX + i + 1, y: mapSize.y - 1));
                 }
             }
         }
-        else if (currentPositionX == 9)
+        else if (currentPositionX == mapSize.x - 1)
         {
             var movePositionY = currentPositionY - dicePoint;
             if (movePositionY < 0)
             {
                 for (int i = 0; i < currentPositionY; i++)
                 {
-                    positions.Add(new Vector2(x: 9, y: currentPositionY - i - 1));
+                    positions.Add(new Vector2(x: mapSize.x - 1, y: currentPositionY - i - 1));
                 }
                 var remainPoint = Mathf.Abs(currentPositionY - dicePoint);
                 for (int i = 0; i < remainPoint; i++)
                 {
-                    positions.Add(new Vector2(x: 9 - i - 1, y: 0));
+                    positions.Add(new Vector2(x: mapSize.x - 1 - i - 1, y: 0));
                 }
             }
             else
             {
                 for (int i = 0; i < dicePoint; i++)
                 {
-                    positions.Add(new Vector2(x: 9, y: currentPositionY - i - 1));
+                    positions.Add(new Vector2(x: mapSize.x - 1, y: currentPositionY - i - 1));
                 }
             }
         }

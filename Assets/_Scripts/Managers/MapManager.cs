@@ -7,7 +7,7 @@ public class MapManager : StaticInstance<MapManager>
 {
     [SerializeField] Tile normalTile;
     [SerializeField] Transform mainCamera;
-    [SerializeField] Vector2 size;
+    [SerializeField] public Vector2 size;
     [SerializeField] Vector2 offset;
 
     Dictionary<Vector2, Tile> tiles;
@@ -36,6 +36,7 @@ public class MapManager : StaticInstance<MapManager>
                     spawnedTile.Init(x, y);
                     spawnedTile.transform.SetParent(environment.transform);
                     tiles[new Vector2(x, y)] = spawnedTile;
+                    // ³]¸m¸m¤¤
                     if (x == size.x - 1 && y == size.y - 1)
                     {
                         lastTilePositionY = Math.Abs(spawnedTile.transform.position.y) / 2 - 1;
@@ -44,7 +45,6 @@ public class MapManager : StaticInstance<MapManager>
             }
         }
 
-        //mainCamera.transform.position = new Vector3(0, 0, -10);
         environment.transform.position = new Vector3(0, lastTilePositionY, 0);
         Camera.main.orthographicSize = (float)MapCameraSize.Small;
     }
