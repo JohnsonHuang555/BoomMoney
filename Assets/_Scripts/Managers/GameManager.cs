@@ -104,7 +104,7 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandlePlayerRoundTime()
     {
-        LeanWindow.TurnOnAll("Modal (LeanWindow)");
+        LeanToggle.TurnOnAll("ConfirmModal");
     }
 }
 
