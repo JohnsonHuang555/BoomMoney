@@ -154,11 +154,11 @@ public class UnitManager : StaticInstance<UnitManager>
         return positions.ToArray();
     }
 
-    public void SpawnItem(ItemType i)
+    public void SetBomb()
     {
         // TODO: ¤£¯à¼g¦º
         var tile = MapManager.Instance.GetTileByCharacterName("Fire");
-        var scriptable = ResourceSystem.Instance.GetItem(i);
+        var scriptable = ResourceSystem.Instance.GetItem(ItemType.Bomb);
         var spawnedItem = Instantiate(scriptable.Prefab, tile.transform.position, Quaternion.identity);
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
