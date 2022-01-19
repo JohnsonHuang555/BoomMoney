@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Bomb : ItemUnitBase
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int remainedRound = 2;
+
+    public override void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
+
+    public override void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
+
+    private void OnStateChanged(GameState newState)
     {
-        
+        if (newState == GameState.PlayerRoundTime)
+        {
+            DecreaseRemainedRound();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseRemainedRound()
     {
-        
+        remainedRound++;
+    }
+
+    public void DecreaseRemainedRound()
+    {
+        remainedRound--;
+    }
+
+    private void Update()
+    {
+        if (remainedRound == 0)
+        {
+            // TODO: ©I¥s¦©¶Ë®`ªº¤èªk
+            Destroy(gameObject);
+        }
     }
 }
