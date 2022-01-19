@@ -10,7 +10,7 @@ public class GameManager : StaticInstance<GameManager>
     public GameState State { get; private set; }
 
     // FIXME: ¼È®É©ñ³o
-    [SerializeField] GameObject endRoundButton;
+    [SerializeField] GameObject EndRoundButton;
 
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
@@ -59,12 +59,12 @@ public class GameManager : StaticInstance<GameManager>
 
     public void ShowEndRoundButton()
     {
-        endRoundButton.SetActive(true);
+        EndRoundButton.SetActive(true);
     }
 
     public void OnEndRound()
     {
-        endRoundButton.SetActive(false);
+        EndRoundButton.SetActive(false);
         ChangeState(GameState.PlayerTurn);
     }
 
@@ -105,6 +105,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandlePlayerRoundTime()
     {
         LeanToggle.TurnOnAll("SetBombModal");
+        ShowEndRoundButton();
     }
 }
 
