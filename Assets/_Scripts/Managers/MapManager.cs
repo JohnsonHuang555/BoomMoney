@@ -57,12 +57,22 @@ public class MapManager : StaticInstance<MapManager>
         return tiles.OrderBy(t => UnityEngine.Random.value).First().Value;
     }
 
+    /// <summary>
+    /// 依照位置回傳格子
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
     public Tile GetTileAtPosition(Vector2 pos)
     {
         if (tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
 
+    /// <summary>
+    /// 找到角色在哪一格
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public Tile GetTileByCharacterName(string name)
     {
         return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;

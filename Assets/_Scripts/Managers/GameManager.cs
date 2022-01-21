@@ -44,6 +44,9 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.MovePlayer:
                 HandleMovePlayer();
                 break;
+            case GameState.BombExplode:
+                HandleBombExplode();
+                break;
             case GameState.PlayerRoundTime:
                 HandlePlayerRoundTime();
                 break;
@@ -105,6 +108,12 @@ public class GameManager : StaticInstance<GameManager>
         StartCoroutine(UnitManager.Instance.MovePlayer());
     }
 
+    private void HandleBombExplode()
+    {
+        
+    }
+
+
     private void HandlePlayerRoundTime()
     {
         LeanToggle.TurnOnAll("SetBombModal");
@@ -125,7 +134,8 @@ public enum GameState
     SpawningItems = 3,
     PlayerTurn = 4,
     MovePlayer = 5,
-    PlayerRoundTime = 6,
-    Win = 7,
-    Lose = 8,
+    BombExplode = 6,
+    PlayerRoundTime = 7,
+    Win = 8,
+    Lose = 9,
 }

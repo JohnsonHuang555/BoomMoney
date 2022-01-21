@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class EffectManager : StaticInstance<EffectManager>
 {
-    public void SpawnEffect()
+    public void SpawnEffect(Effect effect)
     {
 
     }

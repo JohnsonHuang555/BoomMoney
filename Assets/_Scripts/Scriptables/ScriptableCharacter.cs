@@ -25,6 +25,7 @@ public enum CharacterType
 [Serializable]
 public struct CharacterStats
 {
-    public int Health;
+    public int Health; // ¦å¶q
+    public int Fire; // ¤õ¤O
 }
 
