@@ -11,6 +11,9 @@ public class ScriptableItem : ScriptableUnitBase
 {
     public ItemType ItemType;
 
+    [SerializeField] private ItemStats _stats;
+
+    public ItemStats BaseStats => _stats;
     // Used in game
     public ItemUnitBase Prefab;
 }
@@ -19,4 +22,11 @@ public class ScriptableItem : ScriptableUnitBase
 public enum ItemType
 {
     Bomb = 0,
+}
+
+[Serializable]
+public struct ItemStats
+{
+    public int RemainedRound;
+    public int Fire;
 }

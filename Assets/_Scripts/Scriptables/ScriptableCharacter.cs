@@ -9,6 +9,9 @@ public class ScriptableCharacter : ScriptableUnitBase
 {
     public CharacterType CharacterType;
 
+    [SerializeField] private CharacterStats _stats;
+
+    public CharacterStats BaseStats => _stats;
     // Used in game
     public CharacterUnitBase Prefab;
 }
@@ -20,7 +23,7 @@ public enum CharacterType
 }
 
 [Serializable]
-public struct Stats
+public struct CharacterStats
 {
     public int Health;
 }

@@ -2,6 +2,9 @@ using UnityEngine;
 using System;
 using Lean.Gui;
 
+/// <summary>
+/// 管理遊戲主要流程，開始回合，玩家回合，結束回合等等
+/// </summary>
 public class GameManager : StaticInstance<GameManager>
 {
     public static event Action<GameState> OnBeforeStateChanged; 

@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Àx¦s¸ê®Æ
+/// </summary>
 public class ScriptableUnitBase : ScriptableObject
 {
     public Faction Faction;
-
-    [SerializeField] private Stats _stats;
-
-    public Stats BaseStats => _stats;
 }
 
 [Serializable]

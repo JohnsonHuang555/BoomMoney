@@ -10,6 +10,7 @@ public class Fire : CharacterUnitBase
     {
         // Example usage of a static system
         //AudioSystem.Instance.PlaySound(_someSound);
+        //Debug.Log(Stats.Health);
     }
 
     public override void ExecuteMove()

@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Linq;
 using System;
 
+/// <summary>
+/// 管理地圖物件，產不同的格子(Tile)
+/// </summary>
 public class MapManager : StaticInstance<MapManager>
 {
     [SerializeField] Tile normalTile;

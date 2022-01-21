@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CharacterUnitBase : UnitBase
 {
+    public CharacterStats Stats { get; private set; }
+    public virtual void SetStats(CharacterStats stats) => Stats = stats;
     private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
     private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;

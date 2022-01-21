@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 管理單位，生成單位/物件/角色等等
+/// </summary>
 public class UnitManager : StaticInstance<UnitManager>
 {
     public void SpawnPlayers()

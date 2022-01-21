@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Bomb : ItemUnitBase
 {
-    [SerializeField] int remainedRound = 2;
+    // ³Ñ¾l¦^¦X
+    int remainedRound;
+    // ¤õ¤O
+    int fire;
 
     public override void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
     public override void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
+
+    private void Start()
+    {
+        remainedRound = Stats.RemainedRound;
+        fire = Stats.Fire;
+    }
 
     private void OnStateChanged(GameState newState)
     {
