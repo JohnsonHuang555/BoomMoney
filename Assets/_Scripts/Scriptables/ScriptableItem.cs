@@ -29,4 +29,5 @@ public struct ItemStats
 {
     public int RemainedRound;
     public int Fire;
+    public Vector2 Position;
 }

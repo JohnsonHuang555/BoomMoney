@@ -55,7 +55,7 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.Lose:
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState, null); ;
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
         OnAfterStateChanged?.Invoke(newState);
@@ -110,7 +110,10 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleBombExplode()
     {
-        
+        // 顯示爆炸效果
+        EffectManager.Instance.SpawnEffect(Effect.Fire);
+        // TODO: 計算傷害
+        ChangeState(GameState.PlayerRoundTime);
     }
 
 

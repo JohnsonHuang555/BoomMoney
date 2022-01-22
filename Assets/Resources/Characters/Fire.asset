@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   Faction: 0
-  _stats:
-    Health: 0
-  Prefab: {fileID: -8986074609070713856, guid: 51eccc903b1f32c418d9db78735602cc, type: 3}
   CharacterType: 0
+  _stats:
+    Health: 100
+    Fire: 0
+  Prefab: {fileID: -8986074609070713856, guid: 51eccc903b1f32c418d9db78735602cc, type: 3}

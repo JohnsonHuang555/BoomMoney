@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : ItemUnitBase
 {
     // 剩餘回合
-    int remainedRound;
+    public int remainedRound;
+
     // 火力
-    int fire;
+    public int fire;
+
+    // 位置
+    public Vector2 position;
 
     public override void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
@@ -17,6 +19,7 @@ public class Bomb : ItemUnitBase
     {
         remainedRound = Stats.RemainedRound;
         fire = Stats.Fire;
+        position = Stats.Position;
     }
 
     private void OnStateChanged(GameState newState)

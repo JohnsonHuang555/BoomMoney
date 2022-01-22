@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,20 @@ public class EffectManager : StaticInstance<EffectManager>
 {
     public void SpawnEffect(Effect effect)
     {
-
+        switch (effect)
+        {
+            case Effect.Fire:
+                var bombsOnMap = GameObject.FindGameObjectsWithTag("Bomb");
+                foreach (var bomb in bombsOnMap)
+                {
+                    Debug.Log(bomb.GetComponent<Bomb>().fire);
+                }
+                break;
+            case Effect.Poison:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("Effect not found");
+        }
     }
 }
 
