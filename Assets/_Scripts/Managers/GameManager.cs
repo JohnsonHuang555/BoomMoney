@@ -38,14 +38,14 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.SpawningItems:
                 // TODO: 之後做
                 break;
+            case GameState.BombExplode:
+                HandleBombExplode();
+                break;
             case GameState.PlayerTurn:
                 HandlePlayerTurn();
                 break;
             case GameState.MovePlayer:
                 HandleMovePlayer();
-                break;
-            case GameState.BombExplode:
-                HandleBombExplode();
                 break;
             case GameState.PlayerRoundTime:
                 HandlePlayerRoundTime();
@@ -94,6 +94,14 @@ public class GameManager : StaticInstance<GameManager>
         ChangeState(GameState.PlayerTurn);
     }
 
+    private void HandleBombExplode()
+    {
+        // 顯示爆炸效果
+        EffectManager.Instance.SpawnEffect(Effect.Fire);
+        // TODO: 計算傷害
+        ChangeState(GameState.PlayerRoundTime);
+    }
+
     private void HandlePlayerTurn()
     {
         // If you're making a turn based game, this could show the turn menu, highlight available units etc
@@ -107,15 +115,6 @@ public class GameManager : StaticInstance<GameManager>
     {
         StartCoroutine(UnitManager.Instance.MovePlayer());
     }
-
-    private void HandleBombExplode()
-    {
-        // 顯示爆炸效果
-        EffectManager.Instance.SpawnEffect(Effect.Fire);
-        // TODO: 計算傷害
-        ChangeState(GameState.PlayerRoundTime);
-    }
-
 
     private void HandlePlayerRoundTime()
     {
@@ -131,14 +130,14 @@ public class GameManager : StaticInstance<GameManager>
 [Serializable]
 public enum GameState
 {
-    Starting = 0,
-    GenerateMap = 1,
-    SpawningPlayers = 2,
-    SpawningItems = 3,
-    PlayerTurn = 4,
-    MovePlayer = 5,
-    BombExplode = 6,
-    PlayerRoundTime = 7,
-    Win = 8,
-    Lose = 9,
+    Starting,
+    GenerateMap,
+    SpawningPlayers,
+    SpawningItems,
+    BombExplode,
+    PlayerTurn,
+    MovePlayer,
+    PlayerRoundTime,
+    Win,
+    Lose,
 }

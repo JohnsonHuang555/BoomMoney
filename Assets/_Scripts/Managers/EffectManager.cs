@@ -13,10 +13,14 @@ public class EffectManager : StaticInstance<EffectManager>
         switch (effect)
         {
             case Effect.Fire:
-                var bombsOnMap = GameObject.FindGameObjectsWithTag("Bomb");
-                foreach (var bomb in bombsOnMap)
+                if (Helpers.DoesTagExist("Bomb"))
                 {
-                    Debug.Log(bomb.GetComponent<Bomb>().fire);
+                    var bombsOnMap = GameObject.FindGameObjectsWithTag("Bomb");
+
+                    foreach (var bomb in bombsOnMap)
+                    {
+                        Debug.Log(bomb.GetComponent<Bomb>().fire);
+                    }
                 }
                 break;
             case Effect.Poison:

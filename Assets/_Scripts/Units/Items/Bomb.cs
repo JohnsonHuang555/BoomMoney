@@ -24,7 +24,7 @@ public class Bomb : ItemUnitBase
 
     private void OnStateChanged(GameState newState)
     {
-        if (newState == GameState.PlayerRoundTime)
+        if (newState == GameState.BombExplode)
         {
             DecreaseRemainedRound();
         }
