@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class EffectManager : StaticInstance<EffectManager>
 {
+    [SerializeField] GameObject explosionPrefab;
+
     public void SpawnEffect(Effect effect)
     {
         switch (effect)
@@ -19,7 +20,11 @@ public class EffectManager : StaticInstance<EffectManager>
 
                     foreach (var bomb in bombsOnMap)
                     {
-                        Debug.Log(bomb.GetComponent<Bomb>().fire);
+                        var b = bomb.GetComponent<Bomb>();
+                        if (b.remainedRound == 0)
+                        {
+                            StartCoroutine(BombExplode(b));
+                        }
                     }
                 }
                 break;
@@ -28,6 +33,12 @@ public class EffectManager : StaticInstance<EffectManager>
             default:
                 throw new ArgumentOutOfRangeException("Effect not found");
         }
+    }
+
+    private IEnumerator BombExplode(Bomb bomb)
+    {
+        yield return new WaitForSeconds(1);
+        Instantiate(explosionPrefab, bomb.position, Quaternion.identity);
     }
 }
 

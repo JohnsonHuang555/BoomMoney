@@ -47,7 +47,7 @@ public class UnitManager : StaticInstance<UnitManager>
         }
 
         yield return new WaitForSeconds(1);
-        GameManager.Instance.ChangeState(GameState.BombExplode);
+        GameManager.Instance.ChangeState(GameState.PlayerRoundTime);
     }
 
     // 逆時針 TODO: 再做一個方法跑順時針

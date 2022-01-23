@@ -71,14 +71,11 @@ public class GameManager : StaticInstance<GameManager>
     public void OnEndRound()
     {
         EndRoundButton.SetActive(false);
-        ChangeState(GameState.PlayerTurn);
+        ChangeState(GameState.BombExplode);
     }
 
     private void HandleStarting()
     {
-        // Do some start setup, could be environment, cinematics etc
-
-        // Eventually call ChangeState again with your next state
         ChangeState(GameState.GenerateMap);
     }
 
@@ -99,15 +96,12 @@ public class GameManager : StaticInstance<GameManager>
         // 顯示爆炸效果
         EffectManager.Instance.SpawnEffect(Effect.Fire);
         // TODO: 計算傷害
-        ChangeState(GameState.PlayerRoundTime);
+        ChangeState(GameState.PlayerTurn);
     }
 
     private void HandlePlayerTurn()
     {
-        // If you're making a turn based game, this could show the turn menu, highlight available units etc
-
-        // Keep track of how many units need to make a move, once they've all finished, change the state. This could
-        // be monitored in the unit manager or the units themselves.
+        // TODO: 決定哪個玩家顯示色子按鈕
         DiceManager.Instance.ShowDiceButton();
     }
 
