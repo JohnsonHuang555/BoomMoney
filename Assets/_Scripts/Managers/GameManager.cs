@@ -38,9 +38,6 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.SpawningItems:
                 // TODO: 之後做
                 break;
-            case GameState.BombExplode:
-                HandleBombExplode();
-                break;
             case GameState.PlayerTurn:
                 HandlePlayerTurn();
                 break;
@@ -49,6 +46,9 @@ public class GameManager : StaticInstance<GameManager>
                 break;
             case GameState.PlayerRoundTime:
                 HandlePlayerRoundTime();
+                break;
+            case GameState.BombExplode:
+                HandleBombExplode();
                 break;
             case GameState.Win:
                 break;
@@ -91,17 +91,9 @@ public class GameManager : StaticInstance<GameManager>
         ChangeState(GameState.PlayerTurn);
     }
 
-    private void HandleBombExplode()
-    {
-        // 顯示爆炸效果
-        EffectManager.Instance.SpawnEffect(Effect.Fire);
-        // TODO: 計算傷害
-        ChangeState(GameState.PlayerTurn);
-    }
-
     private void HandlePlayerTurn()
     {
-        // TODO: 決定哪個玩家顯示色子按鈕
+        // TODO: 決定哪個玩家顯示骰子按鈕
         DiceManager.Instance.ShowDiceButton();
     }
 
@@ -114,6 +106,14 @@ public class GameManager : StaticInstance<GameManager>
     {
         LeanToggle.TurnOnAll("SetBombModal");
         ShowEndRoundButton();
+    }
+
+    private void HandleBombExplode()
+    {
+        // 顯示爆炸效果
+        EffectManager.Instance.SpawnEffect(Effect.Fire);
+        // TODO: 計算傷害
+        ChangeState(GameState.PlayerTurn);
     }
 }
 
@@ -128,10 +128,10 @@ public enum GameState
     GenerateMap,
     SpawningPlayers,
     SpawningItems,
-    BombExplode,
     PlayerTurn,
     MovePlayer,
     PlayerRoundTime,
+    BombExplode,
     Win,
     Lose,
 }

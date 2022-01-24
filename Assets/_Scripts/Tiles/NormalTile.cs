@@ -7,7 +7,7 @@ public class NormalTile : Tile
     {
         this.x = x;
         this.y = y;
-        //var isOffset = x % 2 != y % 2;
-        //render.color = isOffset ? offsetColor : baseColor;
+        var isOffset = x % 2 != y % 2;
+        render.color = isOffset ? offsetColor : baseColor;
     }
 }

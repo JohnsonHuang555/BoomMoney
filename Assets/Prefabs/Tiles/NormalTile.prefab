@@ -99,6 +99,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960911329526489592, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1968444087
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf7cb9980ba2c44eb270d06222bea0c, type: 3}
 --- !u!1 &6109941678355465038 stripped
@@ -130,5 +138,5 @@ MonoBehaviour:
   OccupiedBomb: {fileID: 0}
   x: 0
   y: 0
-  baseColor: {r: 0.21634129, g: 0.9528302, b: 0.112362035, a: 1}
-  offsetColor: {r: 0.16740988, g: 0.7075472, b: 0.09011214, a: 1}
+  baseColor: {r: 0.59879386, g: 0.8584906, b: 0.56287825, a: 1}
+  offsetColor: {r: 0.47226185, g: 0.745283, b: 0.4324048, a: 1}

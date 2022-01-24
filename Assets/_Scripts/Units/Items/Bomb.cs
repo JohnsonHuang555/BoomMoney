@@ -44,7 +44,6 @@ public class Bomb : ItemUnitBase
     {
         if (remainedRound == 0)
         {
-            // TODO: ©I¥s¦©¶Ë®`ªº¤èªk
             Destroy(gameObject);
         }
     }
