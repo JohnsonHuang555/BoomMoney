@@ -40,11 +40,9 @@ public class Bomb : ItemUnitBase
         remainedRound--;
     }
 
-    private void Update()
+    // 外部方法需要呼叫來移除
+    public void DestroySelf()
     {
-        if (remainedRound == 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

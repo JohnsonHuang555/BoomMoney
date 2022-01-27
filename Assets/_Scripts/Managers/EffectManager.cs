@@ -23,6 +23,7 @@ public class EffectManager : StaticInstance<EffectManager>
                         var b = bomb.GetComponent<Bomb>();
                         if (b.remainedRound == 0)
                         {
+                            b.DestroySelf();
                             StartCoroutine(BombExplode(b));
                         }
                     }

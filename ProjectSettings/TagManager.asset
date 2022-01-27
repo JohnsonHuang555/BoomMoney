@@ -40,11 +40,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background
     uniqueID: 1968444087
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Effect
+    uniqueID: 3613518675
+    locked: 0
+  - name: Character
+    uniqueID: 3054183767
     locked: 0
   - name: Gui
     uniqueID: 4033766457

@@ -44,9 +44,6 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.MovePlayer:
                 HandleMovePlayer();
                 break;
-            case GameState.PlayerRoundTime:
-                HandlePlayerRoundTime();
-                break;
             case GameState.BombExplode:
                 HandleBombExplode();
                 break;
@@ -68,10 +65,20 @@ public class GameManager : StaticInstance<GameManager>
         EndRoundButton.SetActive(true);
     }
 
+    // 結束回合即移動玩家
     public void OnEndRound()
     {
+        // TODO: 寫一個 isCurrentPlayer 變數存是不是輪到該玩家否則 retrun，非玩家回合不得擲骰子
+        if (State != GameState.PlayerTurn)
+        {
+            return;
+        }
+
         EndRoundButton.SetActive(false);
-        ChangeState(GameState.BombExplode);
+
+        // 擲骰子移動
+        DiceManager.Instance.RollDice();
+        //ChangeState(GameState.BombExplode);
     }
 
     private void HandleStarting()
@@ -93,8 +100,9 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandlePlayerTurn()
     {
-        // TODO: 決定哪個玩家顯示骰子按鈕
-        DiceManager.Instance.ShowDiceButton();
+        // TODO: 決定哪個玩家顯示 GUI
+        LeanToggle.TurnOnAll("SetBombModal");
+        ShowEndRoundButton();
     }
 
     private void HandleMovePlayer()
@@ -102,17 +110,11 @@ public class GameManager : StaticInstance<GameManager>
         StartCoroutine(UnitManager.Instance.MovePlayer());
     }
 
-    private void HandlePlayerRoundTime()
-    {
-        LeanToggle.TurnOnAll("SetBombModal");
-        ShowEndRoundButton();
-    }
-
     private void HandleBombExplode()
     {
         // 顯示爆炸效果
         EffectManager.Instance.SpawnEffect(Effect.Fire);
-        // TODO: 計算傷害
+        // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
         ChangeState(GameState.PlayerTurn);
     }
 }
@@ -130,7 +132,6 @@ public enum GameState
     SpawningItems,
     PlayerTurn,
     MovePlayer,
-    PlayerRoundTime,
     BombExplode,
     Win,
     Lose,
