@@ -43,4 +43,9 @@ public class Tile : MonoBehaviour
         OccupiedBomb = unit;
         unit.OccupedTile = this;
     }
+
+    public void DestroyOccupiedBomb()
+    {
+        OccupiedBomb = null;
+    }
 }

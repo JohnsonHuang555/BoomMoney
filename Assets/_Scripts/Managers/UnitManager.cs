@@ -169,7 +169,7 @@ public class UnitManager : StaticInstance<UnitManager>
 
         // FIXME: 應該塞當前玩家的火力
         stats.Fire = 0;
-        stats.Position = tile.transform.position;
+        stats.Position = new Vector2(x: tile.x, y: tile.y);
         spawnedItem.SetStats(stats);
         spawnedItem.tag = "Bomb";
         tile.SetBomb(spawnedItem);
