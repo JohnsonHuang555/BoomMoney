@@ -27,13 +27,11 @@ public class EffectManager : StaticInstance<EffectManager>
                     );
 
                     // 列出所有要爆炸的位置
-                    Vector2[] bombs = GetAllBombingBomb();
+                    Vector2[] bombPositions = GetAllBombingBomb();
 
                     // 顯示爆炸圖案
-                    //foreach (var bomb in bombs)
-                    //{
-                    //    StartCoroutine(BombExplode(bomb));
-                    //}
+                    StartCoroutine(ShowExplodeEffect(bombPositions));
+
                 }
                 break;
             case Effect.Poison:
@@ -54,18 +52,19 @@ public class EffectManager : StaticInstance<EffectManager>
             Bomb bombInstance = bomb.Value;
             if (bombInstance.remainedRound == 0)
             {
-                bombPositions = CheckOtherBombs(bombPositions, bombInstance);
+                bombPositions = CheckBombsStats(bombPositions, bombInstance);
             }
         }
         return bombPositions.ToArray();
     }
 
-    private List<Vector2> CheckOtherBombs(List<Vector2> bombPositions, Bomb bomb)
+    private List<Vector2> CheckBombsStats(List<Vector2> bombPositions, Bomb bomb)
     {
         // 加入當前的位置
         if (!bombPositions.Contains(bomb.position))
         {
             bombPositions.Add(bomb.position);
+            bomb.DestroySelf();
         }
 
         // 根據火力判斷格子有無炸彈
@@ -89,7 +88,8 @@ public class EffectManager : StaticInstance<EffectManager>
                 {
                     topTile.DestroyOccupiedBomb();
                     Bomb newBomb = bombGameObjectDict[position];
-                    bombPositions = CheckOtherBombs(bombPositions, newBomb);
+                    bombPositions = CheckBombsStats(bombPositions, newBomb);
+                    newBomb.DestroySelf();
                 }
             }
 
@@ -106,7 +106,8 @@ public class EffectManager : StaticInstance<EffectManager>
                 {
                     rightTile.DestroyOccupiedBomb();
                     Bomb newBomb = bombGameObjectDict[position];
-                    bombPositions = CheckOtherBombs(bombPositions, newBomb);
+                    bombPositions = CheckBombsStats(bombPositions, newBomb);
+                    newBomb.DestroySelf();
                 }
             }
 
@@ -123,7 +124,8 @@ public class EffectManager : StaticInstance<EffectManager>
                 {
                     bottomTile.DestroyOccupiedBomb();
                     Bomb newBomb = bombGameObjectDict[position];
-                    bombPositions = CheckOtherBombs(bombPositions, newBomb);
+                    bombPositions = CheckBombsStats(bombPositions, newBomb);
+                    newBomb.DestroySelf();
                 }
             }
 
@@ -140,7 +142,8 @@ public class EffectManager : StaticInstance<EffectManager>
                 {
                     leftTile.DestroyOccupiedBomb();
                     Bomb newBomb = bombGameObjectDict[position];
-                    bombPositions = CheckOtherBombs(bombPositions, newBomb);
+                    bombPositions = CheckBombsStats(bombPositions, newBomb);
+                    newBomb.DestroySelf();
                 }
             }
         }
@@ -148,53 +151,15 @@ public class EffectManager : StaticInstance<EffectManager>
     }
 
     // 計算連鎖爆炸範圍並顯示
-    private IEnumerator BombExplode(Bomb bomb)
+    private IEnumerator ShowExplodeEffect(Vector2[] explodePositions)
     {
-        //var positionX = bomb.position.x;
-        //var positionY = bomb.position.y;
-        //var currentPosition = MapManager.Instance.GetTileAtPosition(bomb.position);
-        //var topPosition = new Vector2(x: positionX, y: positionY + 1);
-        //var rightPosition = new Vector2(x: positionX + 1, y: positionY);
-        //var bottomPosition = new Vector2(x: positionX, y: positionY - 1);
-        //var leftPosition = new Vector2(x: positionX - 1, y: positionY);
-
         yield return new WaitForSeconds(1);
-
-        //// top
-        //Tile topTile = MapManager.Instance.GetTileAtPosition(topPosition);
-        //if (topTile && topTile.OccupiedBomb)
-        //{
-        //    topTile.DestroyOccupiedBomb();
-        //    Instantiate(explosionPrefab, topTile.transform.position, Quaternion.identity);
-        //}
-
-        //// right
-        //Tile rightTile = MapManager.Instance.GetTileAtPosition(rightPosition);
-        //if (rightTile && rightTile.OccupiedBomb)
-        //{
-        //    rightTile.DestroyOccupiedBomb();
-        //    Instantiate(explosionPrefab, rightTile.transform.position, Quaternion.identity);
-        //}
-
-        //// bottom
-        //Tile bottomTile = MapManager.Instance.GetTileAtPosition(bottomPosition);
-        //if (bottomTile && bottomTile.OccupiedBomb)
-        //{
-        //    bottomTile.DestroyOccupiedBomb();
-        //    Instantiate(explosionPrefab, bottomTile.transform.position, Quaternion.identity);
-        //}
-
-        //// left
-        //Tile leftTile = MapManager.Instance.GetTileAtPosition(leftPosition);
-        //if (leftTile && leftTile.OccupiedBomb)
-        //{
-        //    leftTile.DestroyOccupiedBomb();
-        //    Instantiate(explosionPrefab, leftTile.transform.position, Quaternion.identity);
-        //}
-
-        //// destroy bombs
-        //bomb.DestroySelf();
-        //Instantiate(explosionPrefab, currentPosition.transform.position, Quaternion.identity);
+        foreach (var position in explodePositions)
+        {
+            // 找到該格 GameObject 位置
+            var tilePosition = MapManager.Instance.GetTileAtPosition(position);
+            Instantiate(explosionPrefab, tilePosition.transform.position, Quaternion.identity);
+        }
     }
 }
 

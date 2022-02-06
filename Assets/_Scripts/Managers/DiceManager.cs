@@ -10,7 +10,7 @@ public class DiceManager : StaticInstance<DiceManager>
     public void RollDice()
     {
         var point = Random.Range(1, 7);
-        dicePoint = 1;
+        dicePoint = point;
 
         GameManager.Instance.ChangeState(GameState.MovePlayer);
     }

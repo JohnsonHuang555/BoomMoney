@@ -10,7 +10,8 @@ public class Explosion : EffectUnitBase
 
     private IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(1);
+        // FIXME: ¬í¼Æ¼È©w
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 }
