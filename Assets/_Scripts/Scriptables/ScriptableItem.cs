@@ -22,6 +22,7 @@ public class ScriptableItem : ScriptableUnitBase
 public enum ItemType
 {
     Bomb = 0,
+    Fire = 1,
 }
 
 [Serializable]

@@ -135,4 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OccupedTile: {fileID: 0}
-  UnitName: 
+  UnitName: Explosion
