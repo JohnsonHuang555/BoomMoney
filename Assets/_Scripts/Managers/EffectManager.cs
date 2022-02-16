@@ -31,7 +31,6 @@ public class EffectManager : StaticInstance<EffectManager>
 
                     // 顯示爆炸圖案
                     StartCoroutine(ShowExplodeEffect(bombPositions));
-
                 }
                 break;
             case Effect.Poison:

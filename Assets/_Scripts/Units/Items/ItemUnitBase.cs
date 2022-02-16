@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 在地圖上會生成的道具或是效果
+/// </summary>
 public class ItemUnitBase : UnitBase
 {
     public ItemStats Stats { get; private set; }

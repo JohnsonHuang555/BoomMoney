@@ -167,8 +167,6 @@ public class UnitManager : StaticInstance<UnitManager>
         // Apply possible modifications here such as potion boosts, team synergies, etc
         var stats = scriptable.BaseStats;
 
-        // FIXME: 應該塞當前玩家的火力
-        stats.Fire = scriptable.BaseStats.Fire;
         stats.Position = new Vector2(x: tile.x, y: tile.y);
         spawnedItem.SetStats(stats);
         spawnedItem.tag = "Bomb";

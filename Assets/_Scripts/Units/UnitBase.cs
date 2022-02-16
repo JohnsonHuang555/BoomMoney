@@ -7,9 +7,4 @@ using UnityEngine;
 public class UnitBase : MonoBehaviour {
     public Tile OccupedTile;
     public string UnitName;
-
-    // FIXME: Remove?
-    public virtual void TakeDamage(int dmg) {
-        
-    }
 }

@@ -17,8 +17,9 @@ public class Bomb : ItemUnitBase
 
     private void Start()
     {
-        remainedRound = Stats.RemainedRound;
-        fire = Stats.Fire;
+        // FIXME: 不能寫死，值來自玩家出的卡片給的值
+        remainedRound = 3;
+        fire = 1;
         position = Stats.Position;
     }
 

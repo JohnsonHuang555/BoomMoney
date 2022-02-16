@@ -12,6 +12,7 @@ public class ScriptableCharacter : ScriptableUnitBase
     [SerializeField] private CharacterStats _stats;
 
     public CharacterStats BaseStats => _stats;
+
     // Used in game
     public CharacterUnitBase Prefab;
 }
@@ -20,7 +21,7 @@ public class ScriptableCharacter : ScriptableUnitBase
 [Serializable]
 public enum CharacterName
 {
-    Fire = 0,
+    Fire = 0, // 暫定以後加新的把這刪掉
 }
 
 // 角色狀態
@@ -28,8 +29,6 @@ public enum CharacterName
 public struct CharacterStats
 {
     public int Health; // 血量
-    public int Fire; // 火力
-    public int Bombs; // 持有炸彈數
     public ItemType[] Items; // 持有道具
 }
 

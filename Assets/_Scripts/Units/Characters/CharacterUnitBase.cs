@@ -13,6 +13,11 @@ public class CharacterUnitBase : UnitBase
 
     }
 
+    public virtual void TakeDamage(int dmg)
+    {
+
+    }
+
     public virtual void ExecuteMove()
     {
         // Override this to do some hero-specific logic, then call this base method to clean up the turn

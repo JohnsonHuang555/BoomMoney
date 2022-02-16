@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Explosion : EffectUnitBase
+public class Explosion : UnitBase
 {
     private void Start()
     {
