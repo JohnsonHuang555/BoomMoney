@@ -6,7 +6,7 @@ public class Fire : CharacterUnitBase
 {
     //[SerializeField] private AudioClip _someSound;
 
-    void Start()
+    private void Start()
     {
         // Example usage of a static system
         //AudioSystem.Instance.PlaySound(_someSound);

@@ -81,23 +81,42 @@ public class GameManager : StaticInstance<GameManager>
         //ChangeState(GameState.BombExplode);
     }
 
+    /// <summary>
+    /// 做一些初始化事件，決定順序，初始裝備之類的
+    /// </summary>
     private void HandleStarting()
     {
         ChangeState(GameState.GenerateMap);
     }
 
+    /// <summary>
+    /// 生成地圖
+    /// </summary>
     private void HandleGenerateMap()
     {
         MapManager.Instance.GenerateMap();
         ChangeState(GameState.SpawningPlayers);
     }
 
+    /// <summary>
+    /// 隨機生成玩家
+    /// </summary>
     private void HandleSpawnPlayers()
     {
         UnitManager.Instance.SpawnPlayers();
         ChangeState(GameState.PlayerTurn);
     }
 
+    /// <summary>
+    /// 隨機生成道具
+    /// </summary>
+    private void HandleSpawnItems()
+    {
+    }
+
+    /// <summary>
+    /// 輪到下一位玩家
+    /// </summary>
     private void HandlePlayerTurn()
     {
         // TODO: 決定哪個玩家顯示 GUI
@@ -105,11 +124,17 @@ public class GameManager : StaticInstance<GameManager>
         ShowEndRoundButton();
     }
 
+    /// <summary>
+    /// 處理移動邏輯
+    /// </summary>
     private void HandleMovePlayer()
     {
         StartCoroutine(UnitManager.Instance.MovePlayer());
     }
 
+    /// <summary>
+    /// 計算爆炸效果及傷害
+    /// </summary>
     private void HandleBombExplode()
     {
         // 顯示爆炸效果
