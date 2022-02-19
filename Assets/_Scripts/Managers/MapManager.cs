@@ -8,7 +8,13 @@ using System;
 /// </summary>
 public class MapManager : StaticInstance<MapManager>
 {
+    // 一般格子
     [SerializeField] Tile normalTile;
+
+    // 道場
+    [SerializeField] Tile dojoTile;
+
+    // 位移
     [SerializeField] Vector2 offset;
 
     Dictionary<Vector2, Tile> tiles;
@@ -41,16 +47,30 @@ public class MapManager : StaticInstance<MapManager>
         tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < size; x++)
         {
+            // 一列隨機產一格放事件
+            //var randomEventTile = UnityEngine.Random.Range(0, size);
+
             for (int y = 0; y < size; y++)
             {
                 Tile spawnedTile;
                 if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
                 {
-                    spawnedTile = Instantiate(
-                        normalTile,
-                        new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size + size)),
-                        Quaternion.identity
-                    );
+                    if (y == 3)
+                    {
+                        spawnedTile = Instantiate(
+                            dojoTile,
+                            new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size + size)),
+                            Quaternion.identity
+                        );
+                    }
+                    else
+                    {
+                        spawnedTile = Instantiate(
+                            normalTile,
+                            new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size + size)),
+                            Quaternion.identity
+                        );
+                    }
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.Init(x, y);
                     spawnedTile.transform.SetParent(environment.transform);
@@ -111,4 +131,9 @@ public struct Settings
 {
     public int tileArea;
     public int cameraSize;
+}
+
+public enum MapEvent
+{
+    Dojo,
 }

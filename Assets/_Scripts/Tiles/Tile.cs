@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public string TileName;
     [SerializeField] protected SpriteRenderer render;
-    [SerializeField] float travelTime = 0.2f;
-    //[SerializeField] private bool isWalkable;
+    [SerializeField] private Color baseColor, offsetColor;
 
+    public string TileName;
     // TODO: 可能多個玩家站在同一格
     public UnitBase OccupiedPlayer;
     public UnitBase OccupiedBomb;
     public int x;
     public int y;
 
+    private float travelTime = 0.2f;
+
     public virtual void Init(int x, int y)
     {
         this.x = x;
         this.y = y;
+        var isOffset = x % 2 != y % 2;
+        render.color = isOffset ? offsetColor : baseColor;
     }
 
     public void SetPlayer(UnitBase unit)

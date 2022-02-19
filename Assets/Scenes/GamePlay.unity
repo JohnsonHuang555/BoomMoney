@@ -2952,6 +2952,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalTile: {fileID: 5746395164730866624, guid: 218df2a8a5e90c645913955e781a9e50, type: 3}
-  mainCamera: {fileID: 1871759910}
-  size: {x: 5, y: 5}
+  dojoTile: {fileID: 653884220558620145, guid: b856915c41a4a1a4e802180a675251db, type: 3}
   offset: {x: 0.97, y: 0.485}
