@@ -9,8 +9,6 @@ using System;
 public class MapManager : StaticInstance<MapManager>
 {
     [SerializeField] Tile normalTile;
-    [SerializeField] Transform mainCamera;
-    [SerializeField] public Vector2 size;
     [SerializeField] Vector2 offset;
 
     Dictionary<Vector2, Tile> tiles;
@@ -35,21 +33,22 @@ public class MapManager : StaticInstance<MapManager>
 
     private void CreateClassicWorld()
     {
+        var size = ClassicMapSettings[TestData.WorldSize].tileArea;
         // 塞進 Environment 裡面
         var environment = GameObject.FindGameObjectWithTag("Environment");
         float lastTilePositionY = 0f;
         // 產地圖
         tiles = new Dictionary<Vector2, Tile>();
-        for (int x = 0; x < size.x; x++)
+        for (int x = 0; x < size; x++)
         {
-            for (int y = 0; y < size.y; y++)
+            for (int y = 0; y < size; y++)
             {
                 Tile spawnedTile;
-                if (x == 0 || x == size.x - 1 || y == 0 || y == size.y - 1)
+                if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
                 {
                     spawnedTile = Instantiate(
                         normalTile,
-                        new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size.x + size.y)),
+                        new Vector3((x - y) * offset.x, -(x + y) * offset.y, 1 - (x + y) / (size + size)),
                         Quaternion.identity
                     );
                     spawnedTile.name = $"Tile {x} {y}";
@@ -57,7 +56,7 @@ public class MapManager : StaticInstance<MapManager>
                     spawnedTile.transform.SetParent(environment.transform);
                     tiles[new Vector2(x, y)] = spawnedTile;
                     // 設置置中
-                    if (x == size.x - 1 && y == size.y - 1)
+                    if (x == size - 1 && y == size - 1)
                     {
                         lastTilePositionY = Math.Abs(spawnedTile.transform.position.y) / 2 - 1;
                     }
@@ -95,13 +94,6 @@ public class MapManager : StaticInstance<MapManager>
         return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
 }
-
-//public enum CameraSize
-//{
-//    Small = 8,
-//    Medium = 10,
-//    Large = 12,
-//}
 
 // 遊戲地圖
 public enum Overworld
