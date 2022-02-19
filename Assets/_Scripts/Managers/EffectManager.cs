@@ -17,7 +17,7 @@ public class EffectManager : StaticInstance<EffectManager>
     {
         switch (effect)
         {
-            case Effect.Fire:
+            case Effect.Explosion:
                 if (Helpers.DoesTagExist("Bomb"))
                 {
                     // 做成字典方便查詢
@@ -164,6 +164,6 @@ public class EffectManager : StaticInstance<EffectManager>
 
 public enum Effect
 {
-    Fire = 0, // 火力
+    Explosion = 0, // 火力
     Poison = 1 // 毒氣
 }

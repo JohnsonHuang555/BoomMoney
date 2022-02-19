@@ -20,6 +20,7 @@ public class GameManager : StaticInstance<GameManager>
 
     public void ChangeState(GameState newState)
     {
+        //if (newState == State) { return; }
         OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
@@ -82,7 +83,7 @@ public class GameManager : StaticInstance<GameManager>
     }
 
     /// <summary>
-    /// 做一些初始化事件，決定順序，初始裝備之類的
+    /// 帶入前個場景的角色跟順序，做一些初始化事件，決定順序，初始裝備之類的
     /// </summary>
     private void HandleStarting()
     {
@@ -94,7 +95,8 @@ public class GameManager : StaticInstance<GameManager>
     /// </summary>
     private void HandleGenerateMap()
     {
-        MapManager.Instance.GenerateMap();
+        // FIXME: TestData
+        MapManager.Instance.GenerateMap(TestData.Overworld);
         ChangeState(GameState.SpawningPlayers);
     }
 
@@ -138,7 +140,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleBombExplode()
     {
         // 顯示爆炸效果
-        EffectManager.Instance.SpawnEffect(Effect.Fire);
+        EffectManager.Instance.SpawnEffect(Effect.Explosion);
         // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
         ChangeState(GameState.PlayerTurn);
     }

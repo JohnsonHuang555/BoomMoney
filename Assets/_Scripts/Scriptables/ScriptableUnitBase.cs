@@ -13,5 +13,5 @@ public class ScriptableUnitBase : ScriptableObject
 public enum Faction
 {
     Characters = 0,
-    Items = 1,
+    Card = 1,
 }

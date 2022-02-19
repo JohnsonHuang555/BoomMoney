@@ -29,6 +29,5 @@ public enum CharacterName
 public struct CharacterStats
 {
     public int Health; // 血量
-    public ItemType[] Items; // 持有道具
 }
 

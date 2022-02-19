@@ -27,7 +27,6 @@ public class UnitManager : StaticInstance<UnitManager>
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
         var stats = scriptable.BaseStats;
-        stats.Health = 100;
         spawnedPlayer.SetStats(stats);
         randomTile.SetPlayer(spawnedPlayer);
     }

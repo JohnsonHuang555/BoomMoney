@@ -8,9 +8,7 @@ public class Fire : CharacterUnitBase
 
     private void Start()
     {
-        // Example usage of a static system
         //AudioSystem.Instance.PlaySound(_someSound);
-        //Debug.Log(Stats.Health);
     }
 
     public override void ExecuteMove()

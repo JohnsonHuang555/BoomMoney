@@ -15,7 +15,7 @@ public class CharacterUnitBase : UnitBase
 
     public virtual void TakeDamage(int dmg)
     {
-
+        
     }
 
     public virtual void ExecuteMove()

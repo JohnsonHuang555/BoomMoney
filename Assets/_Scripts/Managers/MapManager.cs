@@ -14,9 +14,26 @@ public class MapManager : StaticInstance<MapManager>
     [SerializeField] Vector2 offset;
 
     Dictionary<Vector2, Tile> tiles;
+    public Dictionary<WorldSize, Settings> ClassicMapSettings;
 
     // 經典地圖 TODO: 之後要做不同類型的圖
-    public void GenerateMap()
+    public void GenerateMap(Overworld overworld)
+    {
+        // 初始化地圖設定
+        ClassicMapSettings = new();
+        ClassicMapSettings.Add(WorldSize.Small, new Settings { tileArea = 5, cameraSize = 5 });
+
+        switch (overworld)
+        {
+            case Overworld.Classic:
+                CreateClassicWorld();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void CreateClassicWorld()
     {
         // 塞進 Environment 裡面
         var environment = GameObject.FindGameObjectWithTag("Environment");
@@ -48,8 +65,8 @@ public class MapManager : StaticInstance<MapManager>
             }
         }
 
-        environment.transform.position = new Vector3(0, lastTilePositionY, 0);
-        Camera.main.orthographicSize = (float)MapCameraSize.Small;
+        environment.transform.position = new Vector3(0, lastTilePositionY + 0.5f, 0);
+        Camera.main.orthographicSize = ClassicMapSettings[TestData.WorldSize].cameraSize;
     }
 
     public Tile GetRandomTile()
@@ -79,9 +96,27 @@ public class MapManager : StaticInstance<MapManager>
     }
 }
 
-public enum MapCameraSize
+//public enum CameraSize
+//{
+//    Small = 8,
+//    Medium = 10,
+//    Large = 12,
+//}
+
+// 遊戲地圖
+public enum Overworld
 {
-    Small = 8,
-    Medium = 10,
-    Large = 12,
+    Classic,
+}
+
+// 地圖大小
+public enum WorldSize
+{
+    Small,
+}
+
+public struct Settings
+{
+    public int tileArea;
+    public int cameraSize;
 }
