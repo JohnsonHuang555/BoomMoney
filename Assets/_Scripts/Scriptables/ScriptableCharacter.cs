@@ -21,7 +21,8 @@ public class ScriptableCharacter : ScriptableUnitBase
 [Serializable]
 public enum CharacterName
 {
-    Fire = 0, // 暫定以後加新的把這刪掉
+    Fire, // 暫定以後加新的把這刪掉
+    Green
 }
 
 // 角色狀態

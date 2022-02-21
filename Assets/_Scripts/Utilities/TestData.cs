@@ -11,5 +11,5 @@ public class TestData
     public static WorldSize WorldSize = WorldSize.Small;
 
     // TODO: playser struct
-    public static string[] Players = new string[] { "Fire", "Green" }; 
+    public static CharacterName[] Players = new CharacterName[] { CharacterName.Fire, CharacterName.Green }; 
 }

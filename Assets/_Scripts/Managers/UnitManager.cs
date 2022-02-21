@@ -9,14 +9,11 @@ public class UnitManager : StaticInstance<UnitManager>
 {
     public void SpawnPlayers()
     {
-        // TODO: Multiple players
-        //var players = new string[] { "Fire" };
-
-        //foreach (var player in players)
-        //{
-
-        //}
-        SpawnPlayer(CharacterName.Fire);
+        var players = TestData.Players;
+        foreach (var player in players)
+        {
+            SpawnPlayer(player);
+        }
     }
 
     private void SpawnPlayer(CharacterName c)

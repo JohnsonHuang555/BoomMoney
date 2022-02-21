@@ -48,14 +48,14 @@ public class MapManager : StaticInstance<MapManager>
         for (int x = 0; x < size; x++)
         {
             // 一列隨機產一格放事件
-            //var randomEventTile = UnityEngine.Random.Range(0, size);
-
+            var randomEventTile = UnityEngine.Random.Range(0, size);
             for (int y = 0; y < size; y++)
             {
                 Tile spawnedTile;
                 if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
                 {
-                    if (y == 3)
+                    // x == 0 或 x == size-1 這兩排會顯示生成道場，TODO: 之後會很多 Event 要改這段
+                    if (y == randomEventTile && (x == 0 || x == size - 1))
                     {
                         spawnedTile = Instantiate(
                             dojoTile,
