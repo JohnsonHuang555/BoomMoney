@@ -10,6 +10,11 @@ public class TestData
     public static Overworld Overworld = Overworld.Classic;
     public static WorldSize WorldSize = WorldSize.Small;
 
-    // TODO: playser struct
-    public static CharacterName[] Players = new CharacterName[] { CharacterName.Fire, CharacterName.Green }; 
+    public static Dictionary<CharacterName, Player> GetPlayers()
+    {
+        Dictionary<CharacterName, Player> players = new();
+        players.Add(CharacterName.Fire, new Player { Id = 1, PlayOrder = 0 });
+        players.Add(CharacterName.Green, new Player { Id = 2, PlayOrder = 1 });
+        return players;
+    }
 }

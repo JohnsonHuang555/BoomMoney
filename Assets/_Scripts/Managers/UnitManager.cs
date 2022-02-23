@@ -9,25 +9,43 @@ public class UnitManager : StaticInstance<UnitManager>
 {
     public void SpawnPlayers()
     {
-        var players = TestData.Players;
+        // TODO: from previous scene data
+        var players = TestData.GetPlayers();
         foreach (var player in players)
         {
-            SpawnPlayer(player);
+            SpawnPlayer(player.Key);
         }
     }
 
+    /// <summary>
+    /// 生成一個玩家
+    /// </summary>
+    /// <param name="c"></param>
     private void SpawnPlayer(CharacterName c)
     {
+        // 取得隨機一格
         var randomTile = MapManager.Instance.GetRandomTile();
+
+        // 取出存在 resource 的角色資料
         var scriptable = ResourceSystem.Instance.GetCharacter(c);
+
+        // 在場景上畫出角色
         var spawnedPlayer = Instantiate(scriptable.Prefab, randomTile.transform.position, Quaternion.identity);
 
-        // Apply possible modifications here such as potion boosts, team synergies, etc
+        // 初始化角色數值
         var stats = scriptable.BaseStats;
+
+        // 寫入角色 Unit
         spawnedPlayer.SetStats(stats);
+
+        // 把角色寫入該格子
         randomTile.SetPlayer(spawnedPlayer);
     }
 
+    /// <summary>
+    /// 移動角色
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator MovePlayer()
     {
         var fireTile = MapManager.Instance.GetTileByCharacterName("Fire");
@@ -47,6 +65,12 @@ public class UnitManager : StaticInstance<UnitManager>
     }
 
     // 逆時針 TODO: 再做一個方法跑順時針
+    /// <summary>
+    /// 取得所有可能移動的位置
+    /// </summary>
+    /// <param name="tile"></param>
+    /// <param name="dicePoint"></param>
+    /// <returns></returns>
     private Vector2[] GetMovePosition(Tile tile, int dicePoint)
     {
         var positions = new List<Vector2>();
@@ -153,7 +177,10 @@ public class UnitManager : StaticInstance<UnitManager>
         return positions.ToArray();
     }
 
-    public void SetBomb()
+    /// <summary>
+    /// 生成炸彈在地圖上
+    /// </summary>
+    public void SpawnBomb()
     {
         // TODO: 不能寫死
         var tile = MapManager.Instance.GetTileByCharacterName("Fire");

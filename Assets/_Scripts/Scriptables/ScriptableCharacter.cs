@@ -17,6 +17,12 @@ public class ScriptableCharacter : ScriptableUnitBase
     public CharacterUnitBase Prefab;
 }
 
+public struct Player
+{
+    public int Id;
+    public int PlayOrder;
+}
+
 // ¨¤¦â¦WºÙ
 [Serializable]
 public enum CharacterName

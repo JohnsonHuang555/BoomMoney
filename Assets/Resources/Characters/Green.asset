@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Green
   m_EditorClassIdentifier: 
   Faction: 0
-  CharacterName: 0
+  CharacterName: 1
   _stats:
-    Health: 0
-  Prefab: {fileID: 0}
+    Health: 100
+  Prefab: {fileID: -2271436356134305786, guid: dc3a9f8edbd7492479ccf582532b097f, type: 3}

@@ -12,9 +12,6 @@ public class GameManager : StaticInstance<GameManager>
 
     public GameState State { get; private set; }
 
-    // FIXME: 暫時放這
-    [SerializeField] GameObject EndRoundButton;
-
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
 
@@ -61,27 +58,6 @@ public class GameManager : StaticInstance<GameManager>
         Debug.Log($"New state: {newState}");
     }
 
-    public void ShowEndRoundButton()
-    {
-        EndRoundButton.SetActive(true);
-    }
-
-    // 結束回合即移動玩家
-    public void OnEndRound()
-    {
-        // TODO: 寫一個 isCurrentPlayer 變數存是不是輪到該玩家否則 retrun，非玩家回合不得擲骰子
-        if (State != GameState.PlayerTurn)
-        {
-            return;
-        }
-
-        EndRoundButton.SetActive(false);
-
-        // 擲骰子移動
-        DiceManager.Instance.RollDice();
-        //ChangeState(GameState.BombExplode);
-    }
-
     /// <summary>
     /// 帶入前個場景的角色跟順序，做一些初始化事件，決定順序，初始裝備之類的
     /// </summary>
@@ -123,7 +99,7 @@ public class GameManager : StaticInstance<GameManager>
     {
         // TODO: 決定哪個玩家顯示 GUI
         LeanToggle.TurnOnAll("SetBombModal");
-        ShowEndRoundButton();
+        GUIManager.Instance.ShowEndRoundButton();
     }
 
     /// <summary>
