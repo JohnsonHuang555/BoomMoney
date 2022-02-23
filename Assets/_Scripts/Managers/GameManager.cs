@@ -12,6 +12,9 @@ public class GameManager : StaticInstance<GameManager>
 
     public GameState State { get; private set; }
 
+    // 當前玩家
+    public CharacterName CurrentPlayer;
+
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
 
@@ -63,6 +66,8 @@ public class GameManager : StaticInstance<GameManager>
     /// </summary>
     private void HandleStarting()
     {
+        // 取得順位為一的玩家
+        CurrentPlayer = TestData.FirstPlayer;
         ChangeState(GameState.GenerateMap);
     }
 

@@ -6,5 +6,5 @@ using UnityEngine;
 /// </summary>
 public class UnitBase : MonoBehaviour {
     public Tile OccupedTile;
-    public string UnitName;
+    public CharacterName UnitName;
 }

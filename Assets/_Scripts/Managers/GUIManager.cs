@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// 管理 GUI 事件
+/// </summary>
 public class GUIManager : StaticInstance<GUIManager>
 {
     [SerializeField] GameObject EndRoundButton;

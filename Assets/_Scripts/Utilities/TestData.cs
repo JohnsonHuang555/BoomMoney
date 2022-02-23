@@ -17,4 +17,6 @@ public class TestData
         players.Add(CharacterName.Green, new Player { Id = 2, PlayOrder = 1 });
         return players;
     }
+
+    public static CharacterName FirstPlayer;
 }

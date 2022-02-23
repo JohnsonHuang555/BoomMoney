@@ -48,7 +48,7 @@ public class UnitManager : StaticInstance<UnitManager>
     /// <returns></returns>
     public IEnumerator MovePlayer()
     {
-        var fireTile = MapManager.Instance.GetTileByCharacterName("Fire");
+        var fireTile = MapManager.Instance.GetTileByCharacterName(GameManager.Instance.CurrentPlayer);
         var dicePoint = DiceManager.Instance.dicePoint;
         var positions = GetMovePosition(fireTile, dicePoint);
         var fire = (CharacterUnitBase)fireTile.OccupiedPlayer;
@@ -183,7 +183,7 @@ public class UnitManager : StaticInstance<UnitManager>
     public void SpawnBomb()
     {
         // TODO: ¤£¯à¼g¦º
-        var tile = MapManager.Instance.GetTileByCharacterName("Fire");
+        var tile = MapManager.Instance.GetTileByCharacterName(GameManager.Instance.CurrentPlayer);
         var scriptable = ResourceSystem.Instance.GetItem(ItemType.Bomb);
         var spawnedItem = Instantiate(scriptable.Prefab, tile.transform.position, Quaternion.identity);
 

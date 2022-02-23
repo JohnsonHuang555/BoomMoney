@@ -109,7 +109,7 @@ public class MapManager : StaticInstance<MapManager>
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public Tile GetTileByCharacterName(string name)
+    public Tile GetTileByCharacterName(CharacterName name)
     {
         return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
