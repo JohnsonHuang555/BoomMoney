@@ -18,5 +18,6 @@ public class TestData
         return players;
     }
 
-    public static CharacterName FirstPlayer;
+    // TODO: 要補一個拿 player 的方法
+    public static CharacterName FirstPlayer = CharacterName.Fire;
 }

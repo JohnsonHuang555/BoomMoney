@@ -1,5 +1,7 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Tile : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Tile : MonoBehaviour
 
     public string TileName;
     // TODO: 可能多個玩家站在同一格
-    public UnitBase OccupiedPlayer;
+    public List<UnitBase> OccupiedPlayers;
     public UnitBase OccupiedBomb;
     public int x;
     public int y;
@@ -23,15 +25,20 @@ public class Tile : MonoBehaviour
         render.color = isOffset ? offsetColor : baseColor;
     }
 
+    public UnitBase GetOccupiedPlayer(CharacterName name)
+    {
+        return OccupiedPlayers.Where(o => o.UnitName == name).FirstOrDefault();
+    }
+
+    public void DeleteOccupiedPlayer(CharacterName name)
+    {
+        OccupiedPlayers.RemoveAll(o => o.UnitName == name);
+    }
+
     public void SetPlayer(UnitBase unit)
     {
-        if (unit.OccupedTile != null)
-        {
-            unit.OccupedTile.OccupiedPlayer = null;
-        }
-
         unit.transform.DOMove(transform.position, travelTime);
-        OccupiedPlayer = unit;
+        OccupiedPlayers.Add(unit);
         unit.OccupedTile = this;
     }
 

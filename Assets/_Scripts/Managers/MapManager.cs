@@ -111,7 +111,11 @@ public class MapManager : StaticInstance<MapManager>
     /// <returns></returns>
     public Tile GetTileByCharacterName(CharacterName name)
     {
-        return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
+        return tiles.Where(t => {
+            var b = t.Value.OccupiedPlayers.Where(v => v.UnitName == name).FirstOrDefault();
+            return b != null;
+        }).FirstOrDefault().Value;
+        //return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
 }
 

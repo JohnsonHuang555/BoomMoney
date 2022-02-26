@@ -7,13 +7,13 @@ using Lean.Gui;
 /// </summary>
 public class GameManager : StaticInstance<GameManager>
 {
-    public static event Action<GameState> OnBeforeStateChanged; 
+    public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
 
     public GameState State { get; private set; }
 
     // 當前玩家
-    public CharacterName CurrentPlayer;
+    [SerializeField] public CharacterName CurrentPlayer;
 
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
@@ -123,6 +123,8 @@ public class GameManager : StaticInstance<GameManager>
         // 顯示爆炸效果
         EffectManager.Instance.SpawnEffect(Effect.Explosion);
         // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
+
+        // TODO: 寫入下一位玩家
         ChangeState(GameState.PlayerTurn);
     }
 }
