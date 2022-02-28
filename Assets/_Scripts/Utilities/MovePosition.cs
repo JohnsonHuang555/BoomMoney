@@ -37,9 +37,24 @@ public static class MovePosition
                     positions.Add(new Vector2(x: 0, y: currentPositionY + i + 1));
                 }
                 var remainPoint = Mathf.Abs(maxPositionY - totalMoveCount);
-                for (int i = 0; i < remainPoint; i++)
+                // 判斷是否還要轉彎
+                if (remainPoint > maxPositionX)
                 {
-                    positions.Add(new Vector2(x: i + 1, y: maxPositionY));
+                    for (int i = 0; i < maxPositionX; i++)
+                    {
+                        positions.Add(new Vector2(x: i + 1, y: maxPositionY));
+                    }
+                    for (int i = 0; i < remainPoint - maxPositionX; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX, y: maxPositionY - i - 1));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: i + 1, y: maxPositionY));
+                    }
                 }
             }
             else
@@ -60,9 +75,24 @@ public static class MovePosition
                     positions.Add(new Vector2(x: currentPositionX + i + 1, y: maxPositionY));
                 }
                 var remainPoint = Mathf.Abs(maxPositionX - totalMoveCount);
-                for (int i = 0; i < remainPoint; i++)
+                // 判斷是否還要轉彎
+                if (remainPoint > maxPositionY)
                 {
-                    positions.Add(new Vector2(x: maxPositionX, y: maxPositionY - i - 1));
+                    for (int i = 0; i < maxPositionY; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX, y: maxPositionY - i - 1));
+                    }
+                    for (int i = 0; i < remainPoint - maxPositionY; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX - i - 1, y: 0));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX, y: maxPositionY - i - 1));
+                    }
                 }
             }
             else
@@ -83,9 +113,25 @@ public static class MovePosition
                     positions.Add(new Vector2(x: maxPositionX, y: currentPositionY - i - 1));
                 }
                 var remainPoint = Mathf.Abs(currentPositionY - dicePoint);
-                for (int i = 0; i < remainPoint; i++)
+                // 判斷是否還要轉彎
+                if (remainPoint > maxPositionX)
                 {
-                    positions.Add(new Vector2(x: maxPositionX - i - 1, y: 0));
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX - i - 1, y: 0));
+                    }
+                    for (int i = 0; i < remainPoint - maxPositionX; i++)
+                    {
+                        positions.Add(new Vector2(x: 0, y: i + 1));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: maxPositionX - i - 1, y: 0));
+                    }
+
                 }
             }
             else
@@ -107,9 +153,23 @@ public static class MovePosition
                     positions.Add(new Vector2(x: currentPositionX - i - 1, y: 0));
                 }
                 var remainPoint = Mathf.Abs(currentPositionX - dicePoint);
-                for (int i = 0; i < remainPoint; i++)
+                if (remainPoint > maxPositionY)
                 {
-                    positions.Add(new Vector2(x: 0, y: i + 1));
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: 0, y: i + 1));
+                    }
+                    for (int i = 0; i < remainPoint - maxPositionY; i++)
+                    {
+                        positions.Add(new Vector2(x: i + 1, y: maxPositionY));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < remainPoint; i++)
+                    {
+                        positions.Add(new Vector2(x: 0, y: i + 1));
+                    }
                 }
             }
             else
