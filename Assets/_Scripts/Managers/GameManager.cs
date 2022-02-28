@@ -12,7 +12,7 @@ public class GameManager : StaticInstance<GameManager>
 
     public GameState State { get; private set; }
 
-    // 當前玩家
+    // 當前玩家，因為角色不會重複
     [SerializeField] public CharacterName CurrentPlayer;
 
     // Kick the game off with the first state
@@ -124,7 +124,8 @@ public class GameManager : StaticInstance<GameManager>
         EffectManager.Instance.SpawnEffect(Effect.Explosion);
         // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
 
-        // TODO: 寫入下一位玩家
+        // 寫入下一位玩家
+        CurrentPlayer = PlayerHelper.GetNewCurrentPlayer(CurrentPlayer);
         ChangeState(GameState.PlayerTurn);
     }
 }

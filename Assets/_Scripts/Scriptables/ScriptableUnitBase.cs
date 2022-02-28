@@ -12,6 +12,6 @@ public class ScriptableUnitBase : ScriptableObject
 [Serializable]
 public enum Faction
 {
-    Characters = 0,
-    Card = 1,
+    Characters,
+    Card,
 }

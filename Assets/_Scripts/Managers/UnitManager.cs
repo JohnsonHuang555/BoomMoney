@@ -63,7 +63,6 @@ public class UnitManager : StaticInstance<UnitManager>
             {
                 previousTile.DeleteOccupiedPlayer(currentPlayer);
             }
-            Debug.Log(movedTile);
             movedTile.SetPlayer(fire);
             previousTile = movedTile;
         }
