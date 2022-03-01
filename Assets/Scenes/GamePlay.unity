@@ -2099,6 +2099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 2213906486404095438, guid: 99564ecf7d510ae4cb1441cb34860eb9, type: 3}
+  BombingPositions: []
 --- !u!1 &1246337774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EndRoundButton: {fileID: 778157704}
+  HealthValue: {fileID: 1011168546}
 --- !u!1 &1623111375
 GameObject:
   m_ObjectHideFlags: 0

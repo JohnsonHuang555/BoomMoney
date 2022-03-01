@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// 管理 GUI 事件
@@ -8,6 +9,7 @@ using UnityEngine;
 public class GUIManager : StaticInstance<GUIManager>
 {
     [SerializeField] GameObject EndRoundButton;
+    [SerializeField] TextMeshProUGUI HealthValue;
 
     public void ShowEndRoundButton()
     {

@@ -48,10 +48,10 @@ public class UnitManager : StaticInstance<UnitManager>
     public IEnumerator MovePlayer()
     {
         var currentPlayer = GameManager.Instance.CurrentPlayer;
-        var fireTile = MapManager.Instance.GetTileByCharacterName(currentPlayer);
-        var positions = MovePosition.GetMovePosition(fireTile, DiceManager.Instance.dicePoint);
-        var fire = (CharacterUnitBase)fireTile.GetOccupiedPlayer(currentPlayer);
-        fireTile.DeleteOccupiedPlayer(currentPlayer);
+        var currentPlayerTile = MapManager.Instance.GetTileByCharacterName(currentPlayer);
+        var positions = MovePositionHelper.GetMovePosition(currentPlayerTile, DiceManager.Instance.dicePoint);
+        var occupiedPlayer = (CharacterUnitBase)currentPlayerTile.GetOccupiedPlayer(currentPlayer);
+        currentPlayerTile.DeleteOccupiedPlayer(currentPlayer);
 
         Tile previousTile = null;
         foreach (var position in positions)
@@ -63,7 +63,8 @@ public class UnitManager : StaticInstance<UnitManager>
             {
                 previousTile.DeleteOccupiedPlayer(currentPlayer);
             }
-            movedTile.SetPlayer(fire);
+            Debug.Log(movedTile);
+            movedTile.SetPlayer(occupiedPlayer);
             previousTile = movedTile;
         }
 
@@ -76,6 +77,7 @@ public class UnitManager : StaticInstance<UnitManager>
     /// </summary>
     public void SpawnBomb()
     {
+        // FIXME: 已經有炸彈的不能放
         var tile = MapManager.Instance.GetTileByCharacterName(GameManager.Instance.CurrentPlayer);
         var scriptable = ResourceSystem.Instance.GetItem(ItemType.Bomb);
         var spawnedItem = Instantiate(scriptable.Prefab, tile.transform.position, Quaternion.identity);

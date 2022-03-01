@@ -122,10 +122,21 @@ public class GameManager : StaticInstance<GameManager>
     {
         // 顯示爆炸效果
         EffectManager.Instance.SpawnEffect(Effect.Explosion);
+
         // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
+
+        // 計算炸彈傷害
+        DemageCalculateHelper.CalculateBombDemage();
 
         // 寫入下一位玩家
         CurrentPlayer = PlayerHelper.GetNewCurrentPlayer(CurrentPlayer);
+
+        // Test start
+        var a = MapManager.Instance.GetTileByCharacterName(CurrentPlayer);
+        var b = (CharacterUnitBase)a.GetOccupiedPlayer(CurrentPlayer);
+        Debug.Log(b.Stats.Health);
+        // Test end
+
         ChangeState(GameState.PlayerTurn);
     }
 }

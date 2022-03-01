@@ -115,7 +115,6 @@ public class MapManager : StaticInstance<MapManager>
             var b = t.Value.OccupiedPlayers.Where(v => v.UnitName == name).FirstOrDefault();
             return b != null;
         }).FirstOrDefault().Value;
-        //return tiles.Where(t => t.Value.OccupiedPlayer && t.Value.OccupiedPlayer.UnitName == name).First().Value;
     }
 }
 

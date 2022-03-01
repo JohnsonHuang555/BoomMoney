@@ -10,6 +10,7 @@ using UnityEngine;
 public class EffectManager : StaticInstance<EffectManager>
 {
     [SerializeField] GameObject explosionPrefab;
+    public List<Vector2> BombingPositions;
 
     private Dictionary<Vector2, Bomb> bombGameObjectDict;
 
@@ -27,10 +28,10 @@ public class EffectManager : StaticInstance<EffectManager>
                     );
 
                     // 列出所有要爆炸的位置
-                    Vector2[] bombPositions = GetAllBombingBomb();
+                    BombingPositions = GetAllBombingBomb();
 
                     // 顯示爆炸圖案
-                    StartCoroutine(ShowExplodeEffect(bombPositions));
+                    StartCoroutine(ShowExplodeEffect());
                 }
                 break;
             case Effect.Poison:
@@ -40,7 +41,7 @@ public class EffectManager : StaticInstance<EffectManager>
         }
     }
 
-    public Vector2[] GetAllBombingBomb()
+    public List<Vector2> GetAllBombingBomb()
     {
         // 所有會爆炸的格子座標
         List<Vector2> bombPositions = new();
@@ -54,7 +55,7 @@ public class EffectManager : StaticInstance<EffectManager>
                 bombPositions = CheckBombsStats(bombPositions, bombInstance);
             }
         }
-        return bombPositions.ToArray();
+        return bombPositions;
     }
 
     private List<Vector2> CheckBombsStats(List<Vector2> bombPositions, Bomb bomb)
@@ -150,10 +151,10 @@ public class EffectManager : StaticInstance<EffectManager>
     }
 
     // 計算連鎖爆炸範圍並顯示
-    private IEnumerator ShowExplodeEffect(Vector2[] explodePositions)
+    private IEnumerator ShowExplodeEffect()
     {
         yield return new WaitForSeconds(1);
-        foreach (var position in explodePositions)
+        foreach (var position in BombingPositions)
         {
             // 找到該格 GameObject 位置
             var tilePosition = MapManager.Instance.GetTileAtPosition(position);

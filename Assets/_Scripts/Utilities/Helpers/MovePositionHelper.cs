@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 處理移動邏輯
 /// </summary>
-public static class MovePosition
+public static class MovePositionHelper
 {
     // 逆時針 TODO: 再做一個方法跑順時針
     /// <summary>
