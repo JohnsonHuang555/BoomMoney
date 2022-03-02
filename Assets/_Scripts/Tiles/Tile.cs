@@ -27,12 +27,12 @@ public class Tile : MonoBehaviour
 
     public UnitBase GetOccupiedPlayer(CharacterName name)
     {
-        return OccupiedPlayers.Where(o => o.UnitName == name).FirstOrDefault();
+        return OccupiedPlayers.Where(o => o.UnitName == (UnitName)name).FirstOrDefault();
     }
 
     public void DeleteOccupiedPlayer(CharacterName name)
     {
-        OccupiedPlayers.RemoveAll(o => o.UnitName == name);
+        OccupiedPlayers.RemoveAll(o => o.UnitName == (UnitName)name);
     }
 
     public void SetPlayer(UnitBase unit)

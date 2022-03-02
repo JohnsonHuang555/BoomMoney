@@ -27,8 +27,8 @@ public struct Player
 [Serializable]
 public enum CharacterName
 {
-    Fire, // 暫定以後加新的把這刪掉
-    Green
+    Fire = UnitName.Fire,
+    Green = UnitName.Green,
 }
 
 // 角色狀態

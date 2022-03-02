@@ -112,7 +112,7 @@ public class MapManager : StaticInstance<MapManager>
     public Tile GetTileByCharacterName(CharacterName name)
     {
         return tiles.Where(t => {
-            var b = t.Value.OccupiedPlayers.Where(v => v.UnitName == name).FirstOrDefault();
+            var b = t.Value.OccupiedPlayers.Where(v => v.UnitName == (UnitName)name).FirstOrDefault();
             return b != null;
         }).FirstOrDefault().Value;
     }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using Lean.Gui;
+using System.Linq;
+using System.Collections.Generic;
 
 /// <summary>
 /// 管理遊戲主要流程，開始回合，玩家回合，結束回合等等
@@ -123,21 +125,45 @@ public class GameManager : StaticInstance<GameManager>
         // 顯示爆炸效果
         EffectManager.Instance.SpawnEffect(Effect.Explosion);
 
-        // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
-
         // 計算炸彈傷害
         DemageCalculateHelper.CalculateBombDemage();
 
         // 寫入下一位玩家
         CurrentPlayer = PlayerHelper.GetNewCurrentPlayer(CurrentPlayer);
 
-        // Test start
-        var a = MapManager.Instance.GetTileByCharacterName(CurrentPlayer);
-        var b = (CharacterUnitBase)a.GetOccupiedPlayer(CurrentPlayer);
-        Debug.Log(b.Stats.Health);
-        // Test end
+        // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
+        var gameOver = CheckGameOver();
+        if (gameOver.isGameOver)
+        {
+            // 結束遊戲
+        }
+        else
+        {
+            ChangeState(GameState.PlayerTurn);
+        }
+    }
 
-        ChangeState(GameState.PlayerTurn);
+    /// <summary>
+    /// 檢查遊戲是否結束
+    /// </summary>
+    /// <returns></returns>
+    private GameOver CheckGameOver()
+    {
+        List<GameObject> characterGameObjects = GameObject.FindGameObjectsWithTag("Character").ToList();
+
+        // TODO: 如果是團隊模式的話要做另外判斷
+        // 最後存活玩家
+        var remainedPlayer = characterGameObjects.Where(c => {
+            var b = c.GetComponent<CharacterUnitBase>();
+            return b.Stats.Health > 0;
+        }).ToList();
+
+        if (remainedPlayer.Count == 1)
+        {
+            var winner = remainedPlayer[0];
+            return new GameOver { isGameOver = true };
+        }
+        return new GameOver { isGameOver = false };
     }
 }
 
@@ -157,4 +183,12 @@ public enum GameState
     BombExplode,
     Win,
     Lose,
+}
+
+public partial struct GameOver
+{
+    public bool isGameOver;
+    public CharacterName winner;
+    // TODO: 在分組的時候會有值
+    public int winnerGroup;
 }

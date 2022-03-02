@@ -15,7 +15,9 @@ public class CharacterUnitBase : UnitBase
 
     public virtual void TakeDamage(int dmg)
     {
-        
+        var stats = Stats;
+        stats.Health -= dmg;
+        SetStats(stats);
     }
 
     public virtual void ExecuteMove()

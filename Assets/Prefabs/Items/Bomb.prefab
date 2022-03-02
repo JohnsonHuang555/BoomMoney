@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OccupedTile: {fileID: 0}
-  UnitName: Bomb
+  UnitName: 2
   remainedRound: 0
   fire: 0
   position: {x: 0, y: 0}

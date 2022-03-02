@@ -36,6 +36,7 @@ public class UnitManager : StaticInstance<UnitManager>
 
         // 寫入角色 Unit
         spawnedPlayer.SetStats(stats);
+        spawnedPlayer.tag = "Character";
 
         // 把角色寫入該格子
         randomTile.SetPlayer(spawnedPlayer);

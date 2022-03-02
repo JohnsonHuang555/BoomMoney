@@ -21,9 +21,7 @@ public static class DemageCalculateHelper
                     var stats = occupiedPlayer.Stats;
 
                     // TODO: demage 傷害來自卡片上屬性
-                    stats.Health -= 30;
-
-                    occupiedPlayer.SetStats(stats);
+                    occupiedPlayer.TakeDamage(30);
 
                     // 記錄算到第幾個玩家了
                     totalCount++;

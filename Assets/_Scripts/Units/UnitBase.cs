@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,5 +7,13 @@ using UnityEngine;
 /// </summary>
 public class UnitBase : MonoBehaviour {
     public Tile OccupedTile;
-    public CharacterName UnitName;
+    public UnitName UnitName;
+}
+
+[Serializable]
+public enum UnitName
+{
+    Fire, // 暫定以後加新的把這刪掉
+    Green,
+    Bomb,
 }
