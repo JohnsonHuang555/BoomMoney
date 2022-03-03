@@ -149,19 +149,20 @@ public class GameManager : StaticInstance<GameManager>
     /// <returns></returns>
     private GameOver CheckGameOver()
     {
-        List<GameObject> characterGameObjects = GameObject.FindGameObjectsWithTag("Character").ToList();
+        var characterGameObjects = UnitManager.Instance.GetCharacterGameObject();
 
         // TODO: 如果是團隊模式的話要做另外判斷
         // 最後存活玩家
         var remainedPlayer = characterGameObjects.Where(c => {
-            var b = c.GetComponent<CharacterUnitBase>();
-            return b.Stats.Health > 0;
-        }).ToList();
+            var unit = c.GetComponent<CharacterUnitBase>();
+            return unit.Stats.Health > 0;
+        }).Select(c => c.GetComponent<CharacterUnitBase>()).ToList();
 
+        Debug.Log(remainedPlayer.Count);
         if (remainedPlayer.Count == 1)
         {
-            var winner = remainedPlayer[0];
-            return new GameOver { isGameOver = true };
+            var winner = (CharacterName)remainedPlayer[0].UnitName;
+            return new GameOver { isGameOver = true, winner = winner };
         }
         return new GameOver { isGameOver = false };
     }

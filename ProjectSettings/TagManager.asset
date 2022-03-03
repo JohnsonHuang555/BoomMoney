@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - Bomb
+  - Character
   layers:
   - Default
   - TransparentFX

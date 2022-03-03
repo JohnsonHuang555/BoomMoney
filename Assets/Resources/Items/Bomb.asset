@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   Faction: 1
-  ItemType: 0
+  ItemType: 2
   _stats:
-    RemainedRound: 3
-    Fire: 1
     Position: {x: 0, y: 0}
   Prefab: {fileID: -3515641834368505064, guid: cc4560b51cd9fc34781f41ad6e4624c0, type: 3}

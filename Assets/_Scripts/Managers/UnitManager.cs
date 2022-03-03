@@ -1,11 +1,22 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// 管理單位，生成單位/物件/角色等等
 /// </summary>
 public class UnitManager : StaticInstance<UnitManager>
 {
+    /// <summary>
+    /// 取得所有玩家遊戲物件
+    /// </summary>
+    /// <returns></returns>
+    public List<GameObject> GetCharacterGameObject()
+    {
+        return GameObject.FindGameObjectsWithTag("Character").ToList();
+    }
+
     public void SpawnPlayers()
     {
         // TODO: from previous scene data
