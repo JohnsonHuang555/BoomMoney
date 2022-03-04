@@ -18,14 +18,14 @@ public class Bomb : ItemUnitBase
     private void Start()
     {
         // FIXME: 不能寫死，值來自玩家出的卡片給的值
-        remainedRound = 3;
+        remainedRound = 2;
         fire = 1;
         position = Stats.Position;
     }
 
     private void OnStateChanged(GameState newState)
     {
-        if (newState == GameState.BombExplode)
+        if (newState == GameState.BombExplode && GameManager.Instance.isNewRound)
         {
             DecreaseRemainedRound();
         }

@@ -12,9 +12,9 @@ public class UnitManager : StaticInstance<UnitManager>
     /// 取得所有玩家遊戲物件
     /// </summary>
     /// <returns></returns>
-    public List<GameObject> GetCharacterGameObject()
+    public List<GameObject> GetGameObjects(string tagName)
     {
-        return GameObject.FindGameObjectsWithTag("Character").ToList();
+        return GameObject.FindGameObjectsWithTag(tagName).ToList();
     }
 
     public void SpawnPlayers()
@@ -81,6 +81,10 @@ public class UnitManager : StaticInstance<UnitManager>
         }
 
         yield return new WaitForSeconds(1);
+
+        // 寫入新玩家
+        var newCurrentPlayer = PlayerHelper.GetNewCurrentPlayer(GameManager.Instance.CurrentPlayer);
+        GameManager.Instance.SetNewCurrentPlayer(newCurrentPlayer);
         GameManager.Instance.ChangeState(GameState.BombExplode);
     }
 

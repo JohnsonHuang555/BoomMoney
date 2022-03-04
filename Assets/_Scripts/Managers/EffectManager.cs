@@ -22,7 +22,7 @@ public class EffectManager : StaticInstance<EffectManager>
                 if (Helpers.DoesTagExist("Bomb"))
                 {
                     // 做成字典方便查詢
-                    List<GameObject> bombGameObjects = GameObject.FindGameObjectsWithTag("Bomb").ToList();
+                    List<GameObject> bombGameObjects = UnitManager.Instance.GetGameObjects("Bomb");
                     bombGameObjectDict = bombGameObjects.ToDictionary(
                         b => b.GetComponent<Bomb>().position, b => b.GetComponent<Bomb>()
                     );

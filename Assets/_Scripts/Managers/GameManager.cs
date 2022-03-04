@@ -15,7 +15,23 @@ public class GameManager : StaticInstance<GameManager>
     public GameState State { get; private set; }
 
     // 當前玩家，因為角色不會重複
-    [SerializeField] public CharacterName CurrentPlayer;
+    [SerializeField] public CharacterName CurrentPlayer { get; private set; }
+    [SerializeField] public bool isNewRound { get; private set; }
+
+    public void SetNewCurrentPlayer(CharacterName newCurrentPlayer)
+    {
+        var players = TestData.GetPlayers();
+        // 回到第一位玩家代表過了一回合
+        if (players[newCurrentPlayer].PlayOrder == 0)
+        {
+            isNewRound = true;
+        }
+        else
+        {
+            isNewRound = false;
+        }
+        CurrentPlayer = newCurrentPlayer;
+    }
 
     // Kick the game off with the first state
     void Start() => ChangeState(GameState.Starting);
@@ -128,9 +144,6 @@ public class GameManager : StaticInstance<GameManager>
         // 計算炸彈傷害
         DemageCalculateHelper.CalculateBombDemage();
 
-        // 寫入下一位玩家
-        CurrentPlayer = PlayerHelper.GetNewCurrentPlayer(CurrentPlayer);
-
         // TODO: 計算傷害，檢查是否玩家血量歸零 是即獲勝，反之換下一位玩家
         var gameOver = CheckGameOver();
         if (gameOver.isGameOver)
@@ -149,16 +162,16 @@ public class GameManager : StaticInstance<GameManager>
     /// <returns></returns>
     private GameOver CheckGameOver()
     {
-        var characterGameObjects = UnitManager.Instance.GetCharacterGameObject();
+        var characterGameObjects = UnitManager.Instance.GetGameObjects("Character");
 
         // TODO: 如果是團隊模式的話要做另外判斷
         // 最後存活玩家
-        var remainedPlayer = characterGameObjects.Where(c => {
+        var remainedPlayer = characterGameObjects.Where(c =>
+        {
             var unit = c.GetComponent<CharacterUnitBase>();
             return unit.Stats.Health > 0;
         }).Select(c => c.GetComponent<CharacterUnitBase>()).ToList();
 
-        Debug.Log(remainedPlayer.Count);
         if (remainedPlayer.Count == 1)
         {
             var winner = (CharacterName)remainedPlayer[0].UnitName;

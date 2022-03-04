@@ -116,7 +116,7 @@ public static class MovePositionHelper
                 // 判斷是否還要轉彎
                 if (remainPoint > maxPositionX)
                 {
-                    for (int i = 0; i < remainPoint; i++)
+                    for (int i = 0; i < maxPositionX; i++)
                     {
                         positions.Add(new Vector2(x: maxPositionX - i - 1, y: 0));
                     }
@@ -155,7 +155,7 @@ public static class MovePositionHelper
                 var remainPoint = Mathf.Abs(currentPositionX - dicePoint);
                 if (remainPoint > maxPositionY)
                 {
-                    for (int i = 0; i < remainPoint; i++)
+                    for (int i = 0; i < maxPositionY; i++)
                     {
                         positions.Add(new Vector2(x: 0, y: i + 1));
                     }
