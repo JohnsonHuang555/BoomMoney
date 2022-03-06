@@ -11,13 +11,23 @@ public class GUIManager : StaticInstance<GUIManager>
     [SerializeField] GameObject EndRoundButton;
     [SerializeField] TextMeshProUGUI HealthValue;
 
+    // Cards
     [SerializeField] GameObject Card1;
+    [SerializeField] GameObject Card2;
     [SerializeField] GameObject CardArea;
+
+    List<GameObject> cards = new();
 
     private void Start()
     {
-        GameObject card1 = Instantiate(Card1, new Vector3(0, 0, 0), Quaternion.identity);
-        card1.transform.SetParent(CardArea.transform, false);
+        cards.Add(Card1);
+        cards.Add(Card2);
+
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject card1 = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
+            card1.transform.SetParent(CardArea.transform, false);
+        }
     }
 
     public void ShowEndRoundButton()
