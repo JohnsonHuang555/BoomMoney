@@ -11,6 +11,15 @@ public class GUIManager : StaticInstance<GUIManager>
     [SerializeField] GameObject EndRoundButton;
     [SerializeField] TextMeshProUGUI HealthValue;
 
+    [SerializeField] GameObject Card1;
+    [SerializeField] GameObject CardArea;
+
+    private void Start()
+    {
+        GameObject card1 = Instantiate(Card1, new Vector3(0, 0, 0), Quaternion.identity);
+        card1.transform.SetParent(CardArea.transform, false);
+    }
+
     public void ShowEndRoundButton()
     {
         EndRoundButton.SetActive(true);
