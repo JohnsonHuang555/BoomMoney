@@ -93,8 +93,13 @@ public class UnitManager : StaticInstance<UnitManager>
     /// </summary>
     public void SpawnBomb()
     {
-        // FIXME: 已經有炸彈的不能放
         var tile = MapManager.Instance.GetTileByCharacterName(GameManager.Instance.CurrentPlayer);
+        // 已經有炸彈的不能放
+        if (tile.OccupiedBomb != null)
+        {
+            return;
+        }
+
         var scriptable = ResourceSystem.Instance.GetItem(ItemType.Bomb);
         var spawnedItem = Instantiate(scriptable.Prefab, tile.transform.position, Quaternion.identity);
 
