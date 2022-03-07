@@ -121,7 +121,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandlePlayerTurn()
     {
         // TODO: 決定哪個玩家顯示 GUI
-        LeanToggle.TurnOnAll("SetBombModal");
+        //LeanToggle.TurnOnAll("SetBombModal");
         GUIManager.Instance.ShowEndRoundButton();
     }
 
