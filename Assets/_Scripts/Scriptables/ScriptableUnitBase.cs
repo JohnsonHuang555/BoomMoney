@@ -14,4 +14,5 @@ public enum Faction
 {
     Characters,
     Card,
+    Item,
 }

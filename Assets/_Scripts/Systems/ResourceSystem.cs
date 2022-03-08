@@ -15,6 +15,8 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
     public List<ScriptableItem> Items { get; private set; }
     private Dictionary<ItemType, ScriptableItem> ItemsDict;
 
+    public List<ScriptableCard> Cards { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,6 +30,8 @@ public class ResourceSystem : StaticInstance<ResourceSystem>
 
         Items = Resources.LoadAll<ScriptableItem>("Items").ToList();
         ItemsDict = Items.ToDictionary(r => r.ItemType, r => r);
+
+        Cards = Resources.LoadAll<ScriptableCard>("Cards").ToList();
     }
 
     public ScriptableCharacter GetCharacter(CharacterName c) => CharactersDict[c];

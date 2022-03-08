@@ -7,7 +7,6 @@ public abstract class CardBase : MonoBehaviour
 {
     public string CardName;
     public string Brief;
-    public CardType CardType;
 
     private GameObject Canvas;
     private bool isDragging = false;
@@ -72,12 +71,4 @@ public abstract class CardBase : MonoBehaviour
             transform.SetParent(Canvas.transform, true);
         }
     }
-}
-
-[Serializable]
-public enum CardType
-{
-    Item, // 道具卡
-    Skill, // 技能卡
-    Event, // 事件卡
 }

@@ -11,13 +11,10 @@ public class GUIManager : StaticInstance<GUIManager>
     [SerializeField] GameObject EndRoundButton;
     [SerializeField] TextMeshProUGUI HealthValue;
 
-    // Cards
-    [SerializeField] GameObject Card1;
-    [SerializeField] GameObject Card2;
     [SerializeField] GameObject CardArea;
     [SerializeField] public GameObject DropZone;
 
-    List<GameObject> cards = new();
+    List<CardBase> cards = new();
 
     private void Start()
     {
@@ -54,16 +51,22 @@ public class GUIManager : StaticInstance<GUIManager>
 
     private void SetCards()
     {
-        cards.Add(Card1);
-        cards.Add(Card2);
+        // 取出存在 resource 的卡片資料
+        var scriptableCards = ResourceSystem.Instance.Cards;
+
+        foreach (var card in scriptableCards)
+        {
+            cards.Add(card.Prefab);
+        }
     }
 
     private void SpawnCards()
     {
         for (int i = 0; i < 5; i++)
         {
-            GameObject card1 = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
-            card1.transform.SetParent(CardArea.transform, false);
+            var randomCard = cards[Random.Range(0, cards.Count)];
+            var card = Instantiate(randomCard.gameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            card.transform.SetParent(CardArea.transform, false);
         }
     }
 }

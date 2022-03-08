@@ -8,8 +8,8 @@ public class CardBomb : CardBase
     {
         yield return new WaitForSeconds(2);
 
-        UnitManager.Instance.SpawnBomb();
         GUIManager.Instance.ShowDropZone(false);
+        UnitManager.Instance.SpawnBomb();
 
         Destroy(gameObject);
     }
