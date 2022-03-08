@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CardTest : CardBase
 {
-    public override IEnumerator UseCard()
+    public override void ExecuteCard()
     {
-        yield return new WaitForSeconds(2);
-        GUIManager.Instance.ShowDropZone(false);
-
         Debug.Log("You did it Test....");
-
-        Destroy(gameObject);
     }
 }

@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CardBomb : CardBase
 {
-    public override IEnumerator UseCard()
+    public override void ExecuteCard()
     {
-        yield return new WaitForSeconds(2);
-
-        GUIManager.Instance.ShowDropZone(false);
         UnitManager.Instance.SpawnBomb();
-
-        Destroy(gameObject);
     }
 }

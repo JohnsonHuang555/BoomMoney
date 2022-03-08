@@ -58,7 +58,16 @@ public abstract class CardBase : MonoBehaviour
         }
     }
 
-    public abstract IEnumerator UseCard();
+    public IEnumerator UseCard()
+    {
+        yield return new WaitForSeconds(2);
+        GUIManager.Instance.ShowDropZone(false);
+        ExecuteCard();
+        Destroy(gameObject);
+    }
+
+    // °õ¦æ¥d¤ù
+    public abstract void ExecuteCard();
 
     private void Update()
     {
