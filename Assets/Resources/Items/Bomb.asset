@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa821fcc0fee3e34eb2d9c508c4994f6, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  Faction: 1
+  Faction: 2
   ItemType: 2
   _stats:
     Position: {x: 0, y: 0}

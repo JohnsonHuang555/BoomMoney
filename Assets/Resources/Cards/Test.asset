@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d6c4093fd5437428aad1366a185c3d, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  Faction: 0
+  Faction: 1
   CardType: 0
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 576442880404366791, guid: 80d2df66ec2e82e4a8592c6b3762191a, type: 3}

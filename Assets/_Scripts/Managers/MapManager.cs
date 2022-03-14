@@ -84,7 +84,7 @@ public class MapManager : StaticInstance<MapManager>
             }
         }
 
-        environment.transform.position = new Vector3(0, lastTilePositionY + 0.5f, 0);
+        environment.transform.position = new Vector3(0, lastTilePositionY + 2f, 0);
         Camera.main.orthographicSize = ClassicMapSettings[TestData.WorldSize].cameraSize;
     }
 
